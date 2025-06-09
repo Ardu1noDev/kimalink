@@ -1,18 +1,22 @@
-import { db } from "./firebase.js";
-import { collection, addDoc } from "firebase/firestore";
+// firestoreUtils.js
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-/**
- * Função para salvar dados na coleção "usuarios".
- * @param {Object} dados - Dados a serem salvos no Firestore.
- * @returns {Promise<string>} - Retorna o ID do documento salvo.
- */
-export async function salvarUsuario(dados) {
-  try {
-    const docRef = await addDoc(collection(db, "usuarios"), dados);
-    console.log("Documento salvo com ID:", docRef.id); // Exibe o ID do documento no console
-    return docRef.id; // Retorna o ID do documento
-  } catch (error) {
-    console.error("Erro ao salvar dados:", error);
-    throw error; // Lança o erro para ser tratado no formulário
-  }
+// 🔧 Substitua pelos seus dados:
+const firebaseConfig = {
+  apiKey: "AIzaSyDAV5c1E6ziB332jHkcW5aaqBms1IYb0jE",
+  authDomain: "agroapp-fa01d.firebaseapp.com",
+  projectId: "agroapp-fa01d",
+  storageBucket: "agroapp-fa01d.appspot.com",
+  messagingSenderId: "51084283387",
+  appId: "1:51084283387:web:c93490bc1995acb0724f5e",
+  measurementId: "G-VP2KXJ68XE"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export async function salvarUsuario(usuario) {
+  const docRef = await addDoc(collection(db, "usuarios"), usuario);
+  return docRef.id;
 }

@@ -1,35 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-  </style>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Font Awesome para o ícone do Google -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body class="bg-[#f7f0e9] min-h-screen flex items-center justify-center font-['Roboto']">
-  <div class="bg-white rounded-lg shadow-md w-80 p-6">
-    <div class="flex justify-center mb-4">
-      <img alt="Logo KimaLink" class="w-20 h-20 object-contain" src="assets/kimalink.png">
-    </div>
-    <h2 class="text-green-900 font-semibold text-lg text-center mb-4">Login</h2>
-    <form id="login-form">
-      <input id="email" autocomplete="email" class="w-full mb-3 px-3 py-2 rounded border border-yellow-200 bg-yellow-50 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300" type="email" placeholder="Email">
-      <input id="password" autocomplete="current-password" class="w-full mb-4 px-3 py-2 rounded border border-yellow-200 bg-yellow-50 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-300" type="password" placeholder="Senha">
-      <button id="login-btn" class="w-full bg-green-900 text-yellow-50 py-2 rounded text-sm font-semibold hover:bg-green-800 transition" type="button">Entrar</button>
-    </form>
-    <button id="google-login" class="w-full border border-gray-300 rounded-md px-3 py-2 text-xs text-gray-700 font-semibold flex items-center justify-center hover:bg-gray-100 mt-4">
-      <i class="fab fa-google mr-2"></i>
-      Entrar com Google
+<body class="bg-light d-flex justify-content-center align-items-center vh-100">
+  <div class="bg-white rounded-4 shadow p-4 text-center" style="width: 300px;">
+    <img alt="Logo KimaLink" class="mb-3" width="80" src="assets/kimalink.png" />
+    <h2 class="text-success mb-3">Login</h2>
+    <button id="google-login" class="btn btn-outline-dark w-100">
+      <i class="fab fa-google me-2"></i> Entrar com Google
     </button>
-    <p class="text-center text-xs text-gray-700 mt-3">
-      Não tens uma conta?
-      <a class="text-green-700 font-semibold hover:underline" href="signup.html">Registrar</a>
-    </p>
   </div>
-  <script type="module" src="app.js"></script>
+
+  <!-- Firebase App & Auth SDK -->
+  <script type="module">
+    import { auth, provider } from "./firebase.js"; // Caminho deve bater com a pasta real
+    import { signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("google-login").addEventListener("click", async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          console.log("Usuário autenticado:", result.user);
+          window.location.href = "avatarscreen.html"; // Redireciona após login
+        } catch (error) {
+          console.error("Erro ao fazer login:", error);
+          alert("Falha no login! Verifique sua conta.");
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -124,29 +124,35 @@
       const endereco = document.getElementById('endereco').value;
   
       const mensagem = document.getElementById('mensagem-confirmacao');
-      const mensagemErro = document.createElement('p'); // Mensagem de erro dinâmica
+      mensagem.style.display = "none";
   
       try {
-        const id = await salvarUsuario({
-          nome,
-          email,
-          telefone,
-          endereco,
-          tipo: "comprador"
-        });
-        mensagem.textContent = `Conta criada com sucesso! ID: ${id}`; // Mensagem de sucesso
-        mensagem.style.color = "green"; // Define a cor da mensagem como verde
-        mensagem.style.display = "block";
-      } catch (error) {
-        mensagemErro.textContent = "Erro ao salvar os dados. Por favor, tente novamente.";
-        mensagemErro.style.color = "red"; // Define a cor da mensagem como vermelho
-        mensagemErro.style.marginTop = "1rem";
-        mensagemErro.style.textAlign = "center";
-        mensagemErro.style.fontWeight = "600";
-        mensagem.parentNode.appendChild(mensagemErro); // Adiciona a mensagem de erro ao DOM
-        console.error("Erro ao salvar dados:", error);
-      }
+  const id = await salvarUsuario({
+    nome,
+    email,
+    telefone,
+    endereco,
+    tipo: "comprador"
+  });
+
+  mensagem.textContent = `Conta criada com sucesso! ID: ${id}`;
+  mensagem.style.color = "green";
+  mensagem.style.display = "block";
+
+  // Aguarda 2 segundos antes de redirecionar
+  setTimeout(() => {
+    window.location.href = "products.html";
+  }, 2000); // 2000ms = 2 segundos
+
+} catch (error) {
+  mensagem.textContent = "Erro ao salvar os dados. Por favor, tente novamente.";
+  mensagem.style.color = "red";
+  mensagem.style.display = "block";
+  console.error("Erro ao salvar dados:", error);
+}
+
     });
   </script>
+  
 </body>
 </html>
