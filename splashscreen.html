@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kimalink - Splashscreen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+    background: linear-gradient(to bottom, #7AC74F, #FFFFFF); /* Verde alface para branco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    animation: fadeOut 7s forwards; /* Animação de saída */
+}
+
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .logo {
+            width: 200px; /* Ajuste conforme necessário */
+            height: auto;
+        }
+
+        .text {
+            color: #1B3B1B; /* Verde */
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <img src="assets/kimalink.png" alt="Kimalink Logo" class="logo">
+    <p class="text">Trazendo inovação ao campo</p>
+
+    <script>
+        setTimeout(() => {
+            window.location.href = "login.html"; // Redireciona para login após 3 segundos
+        }, 3000);
+    </script>    
+    </script>
+</body>
+</html>

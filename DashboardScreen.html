@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - KimaLink</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    :root {
+      --color-green-lettuce: #8fcf67;
+      --color-green-dark: #5a9a2b;
+      --color-black: #111111;
+      --color-gray-text: #6b7280;
+      --color-white: #ffffff;
+      --border-radius: 0.75rem;
+      --shadow-light: rgba(0, 0, 0, 0.05);
+      --max-width: 1200px;
+      --transition-speed: 0.25s;
+    }
+
+    /* Reset & base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, var(--color-green-lettuce) 0%, var(--color-white) 100%);
+      color: var(--color-gray-text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--color-green-lettuce);
+      outline-offset: 2px;
+    }
+
+    /* Container */
+    .container {
+      width: 90%;
+      max-width: var(--max-width);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--color-white);
+      box-shadow: 0 1px 4px var(--shadow-light);
+      z-index: 100;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--color-green-dark);
+      user-select: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-gray-text);
+    }
+    .nav-links a {
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      background-color: var(--color-green-lettuce);
+      color: var(--color-green-dark);
+      outline: none;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 5rem 0;
+      text-align: center;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--color-black);
+      margin: 0 0 0.5rem 0;
+      line-height: 1.1;
+    }
+    .hero p {
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: var(--color-gray-text);
+      margin: 0 0 2rem 0;
+    }
+    .btn-primary {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      font-weight: 700;
+      font-size: 1.125rem;
+      padding: 0.75rem 2.25rem;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+      user-select: none;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: var(--color-green-dark);
+      transform: scale(1.05);
+      outline: none;
+    }
+
+    /* Metrics grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsivo */
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    .card {
+      background-color: var(--color-white);
+      padding: 2rem 1.75rem 2rem 1.75rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 15px var(--shadow-light);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow var(--transition-speed) ease, transform var(--transition-speed) ease;
+      user-select: none;
+    }
+    .card:hover,
+    .card:focus-within {
+      box-shadow: 0 20px 30px rgba(100, 145, 40, 0.15);
+      transform: translateY(-6px);
+      outline: none;
+    }
+    .card-title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--color-green-dark);
+      margin-bottom: 1rem;
+    }
+    .card-value {
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: var(--color-green-lettuce);
+      margin: 0 0 1.5rem 0;
+      user-select: text;
+    }
+    .card-icon {
+      font-size: 2rem;
+      color: var(--color-green-lettuce);
+      margin-top: auto;
+      align-self: flex-end;
+      user-select: none;
+    }
+
+    /* Recent orders */
+    .recent-orders {
+      max-width: 100%;
+      background: var(--color-white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 12px var(--shadow-light);
+      user-select: none;
+    }
+    .recent-orders h2 {
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--color-black);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead tr {
+      border-bottom: 1.5px solid #e4e4e7;
+    }
+    thead th {
+      text-align: left;
+      padding: 0.75rem 1rem 0.6rem 1rem;
+      font-weight: 600;
+      color: var(--color-green-dark);
+      font-size: 1rem;
+    }
+    tbody td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #f3f4f6;
+      font-weight: 500;
+      color: var(--color-gray-text);
+      font-size: 0.95rem;
+    }
+    tbody tr:hover,
+    tbody tr:focus-within {
+      background-color: #f3fae8;
+      outline: none;
+      cursor: pointer;
+      transition: background-color var(--transition-speed) ease;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--color-green-dark);
+      padding: 1.25rem 0;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.5rem; /* Ajusta o tamanho do texto */
+      }
+      .card-value {
+        font-size: 1.75rem; /* Ajusta o tamanho das métricas */
+      }
+      .nav-links {
+        display: none; /* Esconde o menu em telas pequenas */
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr; /* Uma única coluna em telas menores */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <nav class="container" aria-label="Principais Navegações">
+      <div class="logo" tabindex="0">KimaLink</div>
+      <div class="nav-links" role="navigation" aria-label="Menu Principal">
+        <a href="#" tabindex="0">Dashboard</a>
+        <a href="#" tabindex="0">Produtos</a>
+        <a href="#" tabindex="0">Pedidos</a>
+        <a href="#" tabindex="0">Clientes</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Acompanhe suas vendas e estoque de vegetais</h1>
+      <p>Um painel moderno para gerenciar seu negócio com facilidade e eficiência.</p>
+      <button class="btn-primary" type="button" onclick="window.location.href='addProduct.html'">Adicionar Produto</button>
+    </section>
+
+    <section class="metrics-grid" aria-label="Métricas principais">
+        <article class="card" tabindex="0" aria-labelledby="metric-sales" role="region">
+          <h3 class="card-title" id="metric-sales">Vendas Totais (Últimos 30 dias)</h3>
+          <p class="card-value" id="sales-value">kz 0</p> <!-- Adicionado ID para manipulação -->
+          <div class="card-icon" aria-hidden="true">📈</div>
+        </article>
+      
+        <article class="card" tabindex="0" aria-labelledby="metric-orders-today" role="region">
+          <h3 class="card-title" id="metric-orders-today">Pedidos Hoje</h3>
+          <p class="card-value" id="orders-value">0</p> <!-- Adicionado ID para manipulação -->
+          <div class="card-icon" aria-hidden="true">🛒</div>
+        </article>
+      
+        <article class="card" tabindex="0" aria-labelledby="metric-customers" role="region">
+          <h3 class="card-title" id="metric-customers">Clientes Ativos</h3>
+          <p class="card-value" id="customers-value">0</p> <!-- Adicionado ID para manipulação -->
+          <div class="card-icon" aria-hidden="true">👥</div>
+        </article>
+      
+        <article class="card" tabindex="0" aria-labelledby="metric-stock" role="region">
+          <h3 class="card-title" id="metric-stock">Produtos em Estoque</h3>
+          <p class="card-value" id="stock-value">0</p> <!-- Adicionado ID para manipulação -->
+          <div class="card-icon" aria-hidden="true">🥦</div>
+        </article>
+      </section>
+      
+      <script>
+        // Exemplo de atualização dinâmica dos valores
+        document.getElementById('sales-value').textContent = 'kz 300'; // Atualiza Vendas Totais
+        document.getElementById('orders-value').textContent = '45'; // Atualiza Pedidos Hoje
+        document.getElementById('customers-value').textContent = '312'; // Atualiza Clientes Ativos
+        document.getElementById('stock-value').textContent = '124'; // Atualiza Produtos em Estoque
+      </script>
+
+    <section class="recent-orders" aria-labelledby="recent-orders-title">
+      <h2 id="recent-orders-title">Últimos Pedidos</h2>
+      <table role="table" aria-describedby="recent-orders-description">
+        <caption id="recent-orders-description" style="display:none;">Tabela contendo os últimos pedidos realizados pelos clientes.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Pedido</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Quantidade</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tabindex="0">
+            <td>#14567</td>
+            <td>Maria Silva</td>
+            <td>Alface</td>
+            <td>10</td>
+            <td>Entregue</td>
+          </tr>
+          <tr tabindex="0">
+            <td>#14568</td>
+            <td>João Pereira</td>
+            <td>Tomate</td>
+            <td>5</td>
+            <td>Em trânsito</td>
+          </tr>
+          <tr tabindex="0">
+            <td>#14569</td>
+            <td>Ana Costa</td>
+            <td>Cenoura</td>
+            <td>12</td>
+            <td>Pendente</td>
+          </tr>
+          <tr tabindex="0">
+            <td>#14570</td>
+            <td>Lucas Lima</td>
+            <td>Brócolis</td>
+            <td>7</td>
+            <td>Entregue</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2024 KimaLink - Todos os direitos reservados
+  </footer>
+</body>
+</html>

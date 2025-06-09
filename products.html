@@ -1,0 +1,218 @@
+<html lang="pt-BR">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Drawer Navigator com Produtos - Cards Estáticos
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-green-50 min-h-screen flex flex-col">
+  <!-- Navbar com botão do drawer -->
+  <nav class="flex items-center bg-white shadow-md px-6 py-4">
+   <button aria-label="Abrir menu" class="text-green-700 hover:text-green-900 focus:outline-none mr-4" id="drawerToggle">
+    <i class="fas fa-bars fa-lg">
+    </i>
+   </button>
+   <div class="text-green-700 font-bold text-xl select-none">
+    KimaLink
+   </div>
+  </nav>
+  <!-- Drawer -->
+  <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50" id="drawer">
+   <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
+    <h2 class="text-green-900 font-bold text-lg select-none">
+     Menu
+    </h2>
+    <button aria-label="Fechar menu" class="text-green-700 hover:text-green-900 focus:outline-none" id="drawerClose">
+     <i class="fas fa-times fa-lg">
+     </i>
+    </button>
+   </div>
+   <nav class="flex flex-col mt-4 space-y-2 px-4">
+    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
+     Dashboard
+    </a>
+    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
+     Produtos
+    </a>
+    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
+     Pedidos
+    </a>
+    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
+     Clientes
+    </a>
+   </nav>
+  </aside>
+  <!-- Overlay -->
+  <div class="fixed inset-0 bg-black bg-opacity-40 hidden z-40" id="overlay">
+  </div>
+  <!-- Conteúdo principal -->
+  <main class="flex-grow p-6 container mx-auto">
+   <h1 class="text-green-900 text-3xl font-bold select-none mb-6">
+    Produtos Agropecuários
+   </h1>
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productsGrid">
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Cabeça de alface crespa fresca" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/0107c4ce-9320-425a-b7ab-404729257d23.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Alface Crespa
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 5,50
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Tomates italianos vermelhos frescos" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/9c683d98-2ead-4681-fb49-4bcc5a7b77fa.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Tomate Italiano
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 7,00
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Grãos de pimenta do reino" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/4934270b-874e-4352-447f-80ab25269dd9.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Pimenta do Reino
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 12,00
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Pedaço de carne bovina fresca" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/e31193d6-b358-4d1d-a64a-6292e2bb0dcb.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Carne Bovina
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 45,00
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Cenouras orgânicas frescas" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/77f4c4bb-82f7-4b22-3099-c004ac85b13d.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Cenoura Orgânica
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 6,50
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Maço de coentro fresco" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/f5ab2bcd-403f-44c0-4954-30363013ae0d.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Coentro Fresco
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 4,00
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Cabeças de alho roxo" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/10f14451-9bd2-4112-9d15-290c53490b30.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Alho Roxo
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 10,00
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
+     <img alt="Frango caipira inteiro" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/936194c8-f949-40f2-dad7-b79e078bfaeb.jpg" width="300"/>
+     <div class="p-4 flex flex-col flex-grow">
+      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
+       Frango Caipira
+      </h3>
+      <p class="text-green-700 font-bold text-xl mb-4 select-none">
+       R$ 30,00
+      </p>
+      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
+       <i class="fas fa-cart-plus mr-2">
+       </i>
+       Adicionar
+      </button>
+     </div>
+    </div>
+   </div>
+  </main>
+  <script>
+   const drawer = document.getElementById("drawer");
+    const drawerToggle = document.getElementById("drawerToggle");
+    const drawerClose = document.getElementById("drawerClose");
+    const overlay = document.getElementById("overlay");
+
+    function openDrawer() {
+      drawer.classList.remove("-translate-x-full");
+      overlay.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeDrawer() {
+      drawer.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    drawerToggle.addEventListener("click", openDrawer);
+    drawerClose.addEventListener("click", closeDrawer);
+    overlay.addEventListener("click", closeDrawer);
+
+    // Fechar drawer com ESC
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !drawer.classList.contains("-translate-x-full")) {
+        closeDrawer();
+      }
+    });
+  </script>
+ </body>
+</html>
