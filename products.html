@@ -101,37 +101,52 @@
     </aside>
 
     <aside
-      class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50"
-      id="cartDrawer"
+  class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50"
+  id="cartDrawer"
+>
+  <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
+    <h2 class="text-green-900 font-bold text-lg select-none">Seu Carrinho</h2>
+    <button
+      aria-label="Fechar carrinho"
+      class="text-green-700 hover:text-green-900 focus:outline-none"
+      id="cartDrawerClose"
     >
-      <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
-        <h2 class="text-green-900 font-bold text-lg select-none">Seu Carrinho</h2>
-        <button
-          aria-label="Fechar carrinho"
-          class="text-green-700 hover:text-green-900 focus:outline-none"
-          id="cartDrawerClose"
-        >
-          <i class="fas fa-times fa-lg"></i>
-        </button>
-      </div>
-      <div class="p-4 flex flex-col h-[calc(100%-70px)]">
-        <div id="cartItems" class="flex-grow overflow-y-auto custom-scrollbar">
-          <p class="text-green-600 text-sm italic" id="emptyCartMessage">
-            Seu carrinho está vazio.
-          </p>
-        </div>
-        <div class="border-t border-green-200 pt-4 mt-4">
-          <p class="text-green-900 font-bold text-lg flex justify-between">
-            Total: <span id="cartTotal">Kz 0,00</span>
-          </p>
-          <button
-            class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition"
-          >
-            Finalizar Compra
+      <i class="fas fa-times fa-lg"></i>
+    </button>
+  </div>
+  <div class="p-4 flex flex-col h-[calc(100%-70px)]">
+    <div id="cartItems" class="flex-grow overflow-y-auto custom-scrollbar">
+      <p class="text-green-600 text-sm italic" id="emptyCartMessage">
+        Seu carrinho está vazio.
+      </p>
+    </div>
+    <div class="border-t border-green-200 pt-4 mt-4">
+      <p class="text-green-900 font-bold text-lg flex justify-between">
+        Total: <span id="cartTotal">Kz 0,00</span>
+      </p>
+      <button
+        id="checkoutButton" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition"
+      >
+        Finalizar Compra
+      </button>
+
+      <div id="paymentOptions" class="mt-4 border-t border-green-200 pt-4 hidden">
+        <p class="text-green-900 font-semibold mb-2">Pagar com:</p>
+        <div class="flex flex-col space-y-2">
+          <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition">
+            <i class="fab fa-stripe mr-2"></i> Stripe
+          </button>
+          <button class="w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 rounded-md transition">
+            <i class="fab fa-paypal mr-2"></i> PayPal
+          </button>
+          <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md transition">
+            <i class="fas fa-money-check-alt mr-2"></i> Multicaixa Express
           </button>
         </div>
       </div>
-    </aside>
+    </div>
+  </div>
+</aside>
 
     <div
       class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"
@@ -139,7 +154,7 @@
     ></div>
 
     <main class="flex-grow p-6 container mx-auto">
-      <h1 class="text-green-900 text-3xl font-bold select-none mb-6">Produtos Agropecuários</h1>
+    <h1 class="text-green-900 text-3xl font-bold text-center mb-6">Produtos frescos todos os dias</h1>
 
       <section class="mb-8">
         <h2 class="text-green-800 text-2xl font-bold mb-4">Legumes</h2>
@@ -331,22 +346,6 @@
           preparation: 'Utilize em refogados, molhos, marinadas, ou assado. Amasse, pique ou fatie conforme a receita.',
         },
         {
-          id: 'frango-inteiro-caipira', // ID mais específico
-          name: 'Frango Inteiro Caipira',
-          price: 3000, // Price in Kwanza
-          unit: 'kg',
-          image: './assets/carne/franco.jpg',
-          description: 'Frango inteiro, criado solto e com alimentação natural. Sabor autêntico.',
-          category: 'carnes', // Adicionando categoria
-          nutritionalValues: [
-            'Calorias: 165 kcal (por 100g)',
-            'Proteínas: 31 g (por 100g)',
-            'Selênio e Fósforo',
-            'Vitaminas B3 e B6',
-          ],
-          preparation: 'Assar, cozinhar em ensopados, ou desfiar para recheios. Tempere com ervas, alho, limão e especiarias.',
-        },
-        {
           id: 'costela-de-osso-de-bovino',
           name: 'Costela de Osso de Bovino',
           price: 4500,
@@ -461,7 +460,7 @@
           name: 'Limão',
           price: 150,
           unit: 'un',
-          image: './assets/frutas/limao.jpg',
+          image: './assets/frutas/limão.jpg',
           description: 'Limão fresco e ácido, perfeito para temperos e bebidas.',
           category: 'frutas',
           nutritionalValues: ['Vitamina C', 'Antioxidantes'],
@@ -540,14 +539,31 @@
       const drawerToggle = document.getElementById("drawerToggle");
       const drawerClose = document.getElementById("drawerClose");
 
-      // Cart drawer elements
-      const cartDrawer = document.getElementById("cartDrawer");
-      const cartButton = document.getElementById("cartButton");
-      const cartDrawerClose = document.getElementById("cartDrawerClose");
-      const cartCount = document.getElementById("cartCount");
-      const cartItemsContainer = document.getElementById("cartItems");
-      const cartTotalElement = document.getElementById("cartTotal");
-      const emptyCartMessage = document.getElementById("emptyCartMessage");
+      // ... (código existente) ...
+
+// Cart drawer elements
+const cartDrawer = document.getElementById("cartDrawer");
+const cartButton = document.getElementById("cartButton");
+const cartDrawerClose = document.getElementById("cartDrawerClose");
+const cartCount = document.getElementById("cartCount");
+const cartItemsContainer = document.getElementById("cartItems");
+const cartTotalElement = document.getElementById("cartTotal");
+const emptyCartMessage = document.getElementById("emptyCartMessage");
+
+// Adicionado: Botão de Finalizar Compra e Opções de Pagamento
+const checkoutButton = document.getElementById("checkoutButton");
+const paymentOptions = document.getElementById("paymentOptions");
+
+// ... (restante do seu código JavaScript) ...
+
+// Adicionado: Event Listener para o botão de finalizar compra
+checkoutButton.addEventListener('click', () => {
+    // Exibe as opções de pagamento
+    paymentOptions.classList.remove('hidden');
+    // Você pode adicionar outras ações aqui, como validar o carrinho, etc.
+});
+
+// ... (restante do seu código JavaScript, incluindo o DOMContentLoaded) ...
 
       // Product Details Modal elements
       const productModal = document.getElementById("productModal");
@@ -740,7 +756,7 @@ function addToCart(productName, productPrice, productUnit) {
           productCard.dataset.productId = product.id; // Add product ID for easy access
 
           productCard.innerHTML = `
-            <img alt="${product.name}" class="rounded-t-lg object-cover h-40 w-full" height="200" src="${product.image}" width="300"/>
+            <img alt="${product.name}" class="rounded-t-lg object-cover h-40 w-full" height="100" src="${product.image}" width="300"/>
             <div class="p-4 flex flex-col flex-grow">
               <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">${product.name}</h3>
               <p class="text-green-700 font-bold text-xl mb-4 select-none price">Kz ${product.price.toFixed(2)} /${product.unit}</p>
