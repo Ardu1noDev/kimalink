@@ -1,223 +1,620 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <title>
-   Drawer Navigator com Produtos - Cards Estáticos
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-green-50 min-h-screen flex flex-col">
-  <!-- Navbar com botão do drawer -->
-  <nav class="flex items-center bg-white shadow-md px-6 py-4">
-   <button aria-label="Abrir menu" class="text-green-700 hover:text-green-900 focus:outline-none mr-4" id="drawerToggle">
-    <i class="fas fa-bars fa-lg">
-    </i>
-   </button>
-   <div class="text-green-700 font-bold text-xl select-none">
-    KimaLink
-   </div>
-  </nav>
-  <!-- Drawer -->
-  <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50" id="drawer">
-   <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
-    <h2 class="text-green-900 font-bold text-lg select-none">
-     Menu
-    </h2>
-    <button aria-label="Fechar menu" class="text-green-700 hover:text-green-900 focus:outline-none" id="drawerClose">
-     <i class="fas fa-times fa-lg">
-     </i>
-    </button>
-   </div>
-   <nav class="flex flex-col mt-4 space-y-2 px-4">
-    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
-      Dashboard
-    </a>
-    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
-      Produtos
-    </a>
-    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
-      Pedidos
-    </a>
-    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="#">
-      Clientes
-    </a>
-    <!-- Novo link para a tela de perfil -->
-    <a class="text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium select-none transition" href="perfilscreen.html">
-      Perfil
-    </a>
-  </nav>
-  
-  </aside>
-  <!-- Overlay -->
-  <div class="fixed inset-0 bg-black bg-opacity-40 hidden z-40" id="overlay">
-  </div>
-  <!-- Conteúdo principal -->
-  <main class="flex-grow p-6 container mx-auto">
-   <h1 class="text-green-900 text-3xl font-bold select-none mb-6">
-    Produtos Agropecuários
-   </h1>
-   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="productsGrid">
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Cabeça de alface crespa fresca" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/0107c4ce-9320-425a-b7ab-404729257d23.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Alface Crespa
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 5,50
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Tomates italianos vermelhos frescos" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/9c683d98-2ead-4681-fb49-4bcc5a7b77fa.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Tomate Italiano
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 7,00
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Grãos de pimenta do reino" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/4934270b-874e-4352-447f-80ab25269dd9.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Pimenta do Reino
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 12,00
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Pedaço de carne bovina fresca" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/e31193d6-b358-4d1d-a64a-6292e2bb0dcb.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Carne Bovina
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 45,00
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Cenouras orgânicas frescas" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/77f4c4bb-82f7-4b22-3099-c004ac85b13d.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Cenoura Orgânica
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 6,50
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Maço de coentro fresco" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/f5ab2bcd-403f-44c0-4954-30363013ae0d.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Coentro Fresco
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 4,00
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Cabeças de alho roxo" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/10f14451-9bd2-4112-9d15-290c53490b30.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Alho Roxo
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 10,00
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-    <div class="bg-white rounded-lg shadow hover:shadow-lg transition cursor-pointer flex flex-col">
-     <img alt="Frango caipira inteiro" class="rounded-t-lg object-cover h-40 w-full" height="200" src="https://storage.googleapis.com/a1aa/image/936194c8-f949-40f2-dad7-b79e078bfaeb.jpg" width="300"/>
-     <div class="p-4 flex flex-col flex-grow">
-      <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">
-       Frango Caipira
-      </h3>
-      <p class="text-green-700 font-bold text-xl mb-4 select-none">
-       R$ 30,00
-      </p>
-      <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition">
-       <i class="fas fa-cart-plus mr-2">
-       </i>
-       Adicionar
-      </button>
-     </div>
-    </div>
-   </div>
-  </main>
-  <script>
-   const drawer = document.getElementById("drawer");
-    const drawerToggle = document.getElementById("drawerToggle");
-    const drawerClose = document.getElementById("drawerClose");
-    const overlay = document.getElementById("overlay");
-
-    function openDrawer() {
-      drawer.classList.remove("-translate-x-full");
-      overlay.classList.remove("hidden");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeDrawer() {
-      drawer.classList.add("-translate-x-full");
-      overlay.classList.add("hidden");
-      document.body.style.overflow = "";
-    }
-
-    drawerToggle.addEventListener("click", openDrawer);
-    drawerClose.addEventListener("click", closeDrawer);
-    overlay.addEventListener("click", closeDrawer);
-
-    // Fechar drawer com ESC
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !drawer.classList.contains("-translate-x-full")) {
-        closeDrawer();
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Drawer Navigator com Produtos - Cards Estáticos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Estilo customizado para a barra de rolagem do carrinho */
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 8px;
       }
-    });
-  </script>
- </body>
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f0fdf4; /* green-50 */
+        border-radius: 4px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #a7f3d0; /* green-200 */
+        border-radius: 4px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #6ee7b7; /* green-300 */
+      }
+    </style>
+  </head>
+
+  <body
+    class="min-h-screen flex flex-col"
+    style="background: linear-gradient(180deg, #8fcf6e 0%, #ffffff 100%);"
+  >
+    <nav class="flex items-center bg-white shadow-md px-6 py-4">
+      <button
+        aria-label="Abrir menu"
+        class="text-green-700 hover:text-green-900 focus:outline-none mr-4"
+        id="drawerToggle"
+      >
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+      <div class="text-green-700 font-bold text-xl select-none">KimaLink</div>
+      <button
+        id="cartButton"
+        class="relative text-green-700 hover:text-green-900 focus:outline-none ml-auto"
+      >
+        <i class="fas fa-shopping-cart fa-lg"></i>
+        <span
+          id="cartCount"
+          class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full px-2 text-xs"
+          >0</span
+        >
+      </button>
+    </nav>
+
+    <aside
+      class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50"
+      id="drawer"
+    >
+      <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
+        <h2 class="text-green-900 font-bold text-lg select-none">Menu</h2>
+        <button
+          aria-label="Fechar menu"
+          class="text-green-700 hover:text-green-900 focus:outline-none"
+          id="drawerClose"
+        >
+          <i class="fas fa-times fa-lg"></i>
+        </button>
+      </div>
+
+      <nav class="flex flex-col mt-4 space-y-2 px-4">
+        <a
+          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
+          href="#"
+        >
+          <i class="fas fa-home mr-2"></i> Dashboard
+        </a>
+        <a
+          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
+          href="#"
+        >
+          <i class="fas fa-box-open mr-2"></i> Produtos
+        </a>
+        <a
+          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
+          href="#"
+        >
+          <i class="fas fa-shopping-cart mr-2"></i> Pedidos
+        </a>
+        <a
+          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
+          href="#"
+        >
+          <i class="fas fa-users mr-2"></i> Clientes
+        </a>
+        <a
+          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
+          href="perfilscreen.html"
+        >
+          <i class="fas fa-user-circle mr-2"></i> Perfil
+        </a>
+      </nav>
+    </aside>
+
+    <aside
+      class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50"
+      id="cartDrawer"
+    >
+      <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
+        <h2 class="text-green-900 font-bold text-lg select-none">Seu Carrinho</h2>
+        <button
+          aria-label="Fechar carrinho"
+          class="text-green-700 hover:text-green-900 focus:outline-none"
+          id="cartDrawerClose"
+        >
+          <i class="fas fa-times fa-lg"></i>
+        </button>
+      </div>
+      <div class="p-4 flex flex-col h-[calc(100%-70px)]">
+        <div id="cartItems" class="flex-grow overflow-y-auto custom-scrollbar">
+          <p class="text-green-600 text-sm italic" id="emptyCartMessage">
+            Seu carrinho está vazio.
+          </p>
+        </div>
+        <div class="border-t border-green-200 pt-4 mt-4">
+          <p class="text-green-900 font-bold text-lg flex justify-between">
+            Total: <span id="cartTotal">Kz 0,00</span>
+          </p>
+          <button
+            class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition"
+          >
+            Finalizar Compra
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div
+      class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"
+      id="overlay"
+    ></div>
+
+    <main class="flex-grow p-6 container mx-auto">
+      <h1 class="text-green-900 text-3xl font-bold select-none mb-6">Produtos Agropecuários</h1>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+        id="productsGrid"
+      >
+        </div>
+    </main>
+
+    <div
+      id="productModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4"
+    >
+      <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+        <button
+          id="closeProductModal"
+          class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+        >
+          <i class="fas fa-times fa-lg"></i>
+        </button>
+        <div class="flex flex-col md:flex-row gap-6">
+          <img
+            id="modalProductImage"
+            src=""
+            alt="Imagem do Produto"
+            class="w-full md:w-1/2 h-48 object-cover rounded-md shadow-sm"
+          />
+          <div class="md:w-1/2">
+            <h2 id="modalProductName" class="text-green-900 font-bold text-2xl mb-2"></h2>
+            <p id="modalProductPrice" class="text-green-700 font-bold text-xl mb-4"></p>
+            <p id="modalProductDescription" class="text-gray-700 text-sm mb-4"></p>
+
+            <h3 class="text-green-900 font-semibold text-base mb-2">Valores Nutricionais:</h3>
+            <ul id="modalNutritionalValues" class="list-disc list-inside text-gray-600 text-sm mb-4">
+              </ul>
+
+            <h3 class="text-green-900 font-semibold text-base mb-2">Como Preparar:</h3>
+            <p id="modalPreparation" class="text-gray-600 text-sm mb-4"></p>
+
+            <button
+              id="modalAddToCartButton"
+              class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition"
+            >
+              <i class="fas fa-cart-plus mr-2"></i> Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Data for products - UPDATED IMAGE PATHS
+      const productsData = [
+        {
+          id: 'costela-de-osso-de-bovino',
+          name: 'Costela de osso de bovino',
+          price: 4500, // Price in Kwanza
+          unit: 'kg', // Unit of sale
+          image: './assets/carne/costela de osso de bovino.jpg', // Updated path
+          description: 'Costela de osso de bovino fresca, ideal para churrascos ou pratos do dia a dia.',
+          nutritionalValues: [
+            'Calorias: 250 kcal (por 100g)',
+            'Proteínas: 26 g (por 100g)',
+            'Ferro e Zinco',
+            'Vitaminas do Complexo B',
+          ],
+          preparation: 'Grelhar, assar ou cozinhar conforme a preferência. Tempere com sal grosso, pimenta do reino e ervas a gosto.',
+        },
+        {
+           id: 'costeleta-de-carneiro',
+          name: 'Costeleta de carneiro',
+          price: 5500,
+          unit: 'kg',
+          image: './assets/carne/costeleta de carneiro.jpg',
+          description: 'Costeletas tenras e saborosas, perfeitas para um jantar especial.',
+          nutritionalValues: ['Proteínas', 'Ferro', 'Vitaminas B12'],
+          preparation: 'Grelhar ou assar até o ponto desejado.  Marinar antes para melhor sabor.',
+        },
+        {
+          id: 'coxa-de-frango',
+          name: 'Coxa de frango',
+          price: 1800,
+          unit: 'kg',
+          image: './assets/carne/coxa de frango.jpg',
+          description: 'Coxas de frango suculentas e versáteis, ótimas para diversas receitas.',
+          nutritionalValues: ['Proteínas', 'Vitaminas B', 'Ferro'],
+          preparation: 'Assar, grelhar, ou cozinhar.  Temperar a gosto.',
+        },
+        {
+          id: 'figado-bovino',
+          name: 'Fígado bovino',
+          price: 1200,
+          unit: 'kg',
+          image: './assets/carne/figado bovino.jpg',
+          description: 'Fígado bovino fresco, rico em nutrientes.',
+          nutritionalValues: ['Ferro', 'Vitaminas', 'Proteínas'],
+          preparation: 'Fritar ou grelhar rapidamente.  Temperar com alho e cebola.',
+        },
+        {
+          id: 'frango',
+          name: 'Frango',
+          price: 2500,
+          unit: 'kg',
+          image: './assets/carne/frango.jpg',
+          description: 'Frango inteiro, ideal para assados ou ensopados.',
+          nutritionalValues: ['Proteínas', 'Vitaminas B', 'Selênio'],
+          preparation: 'Assar, cozinhar, ou grelhar.  Temperar a gosto.',
+        },
+        {
+          id: 'patinha',
+          name: 'Patinha',
+          price: 900,
+          unit: 'kg',
+           image: './assets/carne/patinha.jpg',
+          description: 'Patinha de frango, ideal para caldos e sopas.',
+          nutritionalValues: ['Colágeno', 'Proteínas'],
+          preparation: 'Cozinhar em caldos ou sopas.  Temperar a gosto.',
+        },
+        {
+          id: 'peixe',
+          name: 'Peixe',
+          price: 3200,
+          unit: 'kg',
+          image: './assets/carne/peixe.jpg',
+          description: 'Peixe fresco, rico em ômega 3.',
+          nutritionalValues: ['Ômega 3', 'Proteínas', 'Vitaminas D'],
+          preparation: 'Assar, grelhar, ou fritar.  Temperar com limão e ervas.',
+        },
+         {
+          id: 'picanha',
+          name: 'Picanha',
+          price: 6000,
+          unit: 'kg',
+          image: './assets/carne/picanha.jpg',
+          description: 'Picanha bovina, corte nobre para churrasco.',
+          nutritionalValues: ['Proteínas', 'Ferro', 'Vitaminas B'],
+          preparation: 'Grelhar ou assar no churrasco.  Temperar com sal grosso.',
+        },
+         {
+          id: 'abacate',
+          name: 'Abacate',
+          price: 800,
+          unit: 'un',
+          image: './assets/frutas/abacate.jpg',
+          description: 'Abacate cremoso e nutritivo.',
+          nutritionalValues: ['Gorduras saudáveis', 'Vitaminas', 'Fibras'],
+          preparation: 'Consumir in natura, em saladas ou guacamole.',
+        },
+        {
+          id: 'banana',
+          name: 'Banana',
+          price: 300,
+          unit: 'kg',
+          image: './assets/frutas/banana.jpg',
+          description: 'Banana doce e energética.',
+          nutritionalValues: ['Potássio', 'Vitaminas B6', 'Fibras'],
+          preparation: 'Consumir in natura ou em sobremesas.',
+        },
+        {
+          id: 'abacaxi',
+          name: 'Abacaxi',
+          price: 700,
+          unit: 'un',
+          image: './assets/frutas/abacaxi.jpg',
+          description: 'Abacaxi doce e refrescante.',
+          nutritionalValues: ['Vitamina C', 'Manganês', 'Fibras'],
+          preparation: 'Consumir in natura ou em sucos.',
+        },
+        {
+           id: 'jindungo',
+          name: 'Jindungo',
+          price: 200,
+          unit: 'un',
+          image: './assets/frutas/jindungo.jpg',
+          description: 'Jindungo picante.',
+          nutritionalValues: ['Vitaminas', 'Antioxidantes'],
+          preparation: 'Usar com moderação para temperar.',
+        },
+        {
+          id: 'kiwi',
+          name: 'Kiwi',
+          price: 500,
+          unit: 'un',
+          image: './assets/frutas/kiwi.jpg',
+          description: 'Kiwi saboroso e rico em vitamina C.',
+          nutritionalValues: ['Vitamina C', 'Fibras', 'Antioxidantes'],
+          preparation: 'Consumir in natura ou em saladas de frutas.',
+        },
+        {
+          id: 'limao',
+          name: 'Limão',
+          price: 150,
+          unit: 'un',
+          image: './assets/frutas/limão.jpg',
+          description: 'Limão fresco e ácido.',
+          nutritionalValues: ['Vitamina C', 'Antioxidantes'],
+          preparation: 'Usar em bebidas, temperos ou sobremesas.',
+        },
+        {
+          id: 'manga',
+          name: 'Manga',
+          price: 600,
+          unit: 'un',
+          image: './assets/frutas/manga.jpg',
+          description: 'Manga doce e suculenta.',
+          nutritionalValues: ['Vitaminas A e C', 'Fibras'],
+          preparation: 'Consumir in natura ou em sucos.',
+        },
+        {
+          id: 'melancia',
+          name: 'Melancia',
+          price: 400,
+          unit: 'kg',
+          image: './assets/frutas/melancia.jpg',
+          description: 'Melancia refrescante e hidratante.',
+          nutritionalValues: ['Vitaminas A e C', 'Hidratação'],
+          preparation: 'Consumir in natura.',
+        },
+        {
+          id: 'tomate',
+          name: 'Tomate',
+          price: 350,
+          unit: 'kg',
+          image: './assets/frutas/tomate.jpg',
+          description: 'Tomate maduro e saboroso.',
+          nutritionalValues: ['Vitaminas A e C', 'Licopeno'],
+          preparation: 'Usar em saladas, molhos ou sucos.',
+        },
+         {
+          id: 'couve',
+          name: 'Couve',
+          price: 250,
+          unit: 'kg',
+          image: './assets/legumes/couve.jpg',
+          description: 'Couve fresca e nutritiva.',
+          nutritionalValues: ['Vitaminas K e C', 'Fibras'],
+          preparation: 'Usar em saladas, sucos ou cozida.',
+        },
+         {
+          id: 'gengibre',
+          name: 'Gengibre',
+          price: 900,
+          unit: 'kg',
+          image: './assets/legumes/gengibre.jpg',
+          description: 'Gengibre fresco e picante.',
+          nutritionalValues: ['Antioxidantes', 'Anti-inflamatório'],
+          preparation: 'Usar em chás, temperos ou sucos.',
+        },
+        {
+          id: 'milho',
+          name: 'Milho',
+          price: 300,
+          unit: 'un',
+          image: './assets/legumes/milho.jpg',
+          description: 'Milho doce e saboroso.',
+          nutritionalValues: ['Fibras', 'Vitaminas B'],
+          preparation: 'Cozinhar, assar ou usar em saladas.',
+        },
+        {
+          id: 'cenoura',
+          name: 'Cenoura',
+          price: 400,
+          unit: 'kg',
+          image: './assets/vegetais/cenoura.jpg',
+          description: 'Cenoura crocante e rica em vitaminas.',
+          nutritionalValues: ['Vitamina A', 'Fibras'],
+          preparation: 'Consumir crua, cozida ou em sucos.',
+        },
+        {
+          id: 'batata',
+          name: 'Batata',
+          price: 350,
+          unit: 'kg',
+          image: './assets/vegetais/batata.jpg',
+          description: 'Batata versátil e nutritiva.',
+          nutritionalValues: ['Carboidratos', 'Potássio', 'Vitaminas C'],
+          preparation: 'Cozinhar, assar, fritar ou usar em purês.',
+        },
+        {
+          id: 'alface',
+          name: 'Alface',
+          price: 250,
+          unit: 'kg',
+          image: './assets/vegetais/alface.jpg',
+          description: 'Alface fresca e crocante.',
+          nutritionalValues: ['Vitaminas A e K', 'Fibras'],
+          preparation: 'Usar em saladas ou sanduíches.',
+        },
+        {
+          id: 'beringela',
+          name: 'Beringela',
+          price: 500,
+          unit: 'kg',
+          image: './assets/vegetais/beringela.jpg',
+          description: 'Beringela saborosa e versátil.',
+          nutritionalValues: ['Fibras', 'Antioxidantes'],
+          preparation: 'Assar, grelhar ou usar em ensopados.',
+        },
+        {
+          id: 'pepino',
+          name: 'Pepino',
+          price: 300,
+          unit: 'kg',
+          image: './assets/vegetais/pepino.jpg',
+          description: 'Pepino refrescante e crocante.',
+          nutritionalValues: ['Hidratação', 'Vitaminas K'],
+          preparation: 'Usar em saladas ou conservas.',
+        },
+        {
+          id: 'turtulho',
+          name: 'Turtulho',
+          price: 600,
+          unit: 'kg',
+          image: './assets/vegetais/turtulho.jpg',
+          description: 'Turtulho fresco e saboroso.',
+           nutritionalValues: ['Vitaminas', 'Fibras'],
+          preparation: 'Cozinhar ou usar em saladas.',
+        },
+      ];
+
+      // JavaScript to handle drawer functionality, cart, and product display
+      document.addEventListener('DOMContentLoaded', () => {
+        const drawerToggle = document.getElementById('drawerToggle');
+        const drawerClose = document.getElementById('drawerClose');
+        const drawer = document.getElementById('drawer');
+        const cartButton = document.getElementById('cartButton');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartDrawerClose = document.getElementById('cartDrawerClose');
+        const overlay = document.getElementById('overlay');
+        const productsGrid = document.getElementById('productsGrid');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotalDisplay = document.getElementById('cartTotal');
+        const cartCountDisplay = document.getElementById('cartCount');
+        const productModal = document.getElementById('productModal');
+        const closeProductModal = document.getElementById('closeProductModal');
+        const modalProductImage = document.getElementById('modalProductImage');
+        const modalProductName = document.getElementById('modalProductName');
+        const modalProductPrice = document.getElementById('modalProductPrice');
+        const modalProductDescription = document.getElementById('modalProductDescription');
+        const modalNutritionalValues = document.getElementById('modalNutritionalValues');
+        const modalPreparation = document.getElementById('modalPreparation');
+        const modalAddToCartButton = document.getElementById('modalAddToCartButton');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+
+        let cart = [];
+
+        // Function to toggle drawer visibility
+        const toggleDrawer = () => {
+          drawer.classList.toggle('-translate-x-full');
+          overlay.classList.toggle('hidden');
+        };
+
+        // Function to toggle cart drawer visibility
+        const toggleCartDrawer = () => {
+          cartDrawer.classList.toggle('translate-x-full');
+          overlay.classList.toggle('hidden');
+        };
+
+        // Function to open the product modal
+        const openProductModal = (product) => {
+          modalProductImage.src = product.image;
+          modalProductName.textContent = product.name;
+          modalProductPrice.textContent = `${product.price.toLocaleString('pt-AO', {
+            style: 'currency',
+            currency: 'AOA',
+          })} / ${product.unit}`;
+          modalProductDescription.textContent = product.description;
+
+          // Clear previous nutritional values and add new ones
+          modalNutritionalValues.innerHTML = '';
+          product.nutritionalValues.forEach((value) => {
+            const li = document.createElement('li');
+            li.textContent = value;
+            modalNutritionalValues.appendChild(li);
+          });
+
+          modalPreparation.textContent = product.preparation;
+          modalAddToCartButton.onclick = () => addToCart(product); // Attach the addToCart function
+          productModal.classList.remove('hidden');
+          overlay.classList.remove('hidden');
+        };
+
+        // Function to close the modal
+        const closeProductModalFunc = () => {
+          productModal.classList.add('hidden');
+          overlay.classList.add('hidden');
+        };
+
+        // Function to add a product to the cart
+        const addToCart = (product) => {
+          const existingProduct = cart.find((item) => item.id === product.id);
+          if (existingProduct) {
+            existingProduct.quantity += 1;
+          } else {
+            cart.push({ ...product, quantity: 1 });
+          }
+          updateCartDisplay();
+          toggleCartDrawer(); // Open cart drawer after adding
+        };
+
+        // Function to update the cart display
+        const updateCartDisplay = () => {
+          cartItems.innerHTML = ''; // Clear previous cart items
+          let total = 0;
+
+          if (cart.length === 0) {
+            cartItems.appendChild(emptyCartMessage);
+          } else {
+            cart.forEach((item) => {
+              const itemTotal = item.price * item.quantity;
+              total += itemTotal;
+
+              const cartItem = document.createElement('div');
+              cartItem.className = 'flex items-center justify-between border-b border-green-200 py-2';
+              cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md mr-4">
+                <div>
+                  <p class="text-green-900 font-semibold">${item.name}</p>
+                  <p class="text-green-700 text-sm">${item.quantity} x ${item.price.toLocaleString('pt-AO', {
+                    style: 'currency',
+                    currency: 'AOA',
+                  })}</p>
+                </div>
+                <p class="text-green-900 font-bold">${itemTotal.toLocaleString('pt-AO', {
+                  style: 'currency',
+                  currency: 'AOA',
+                })}</p>
+              `;
+              cartItems.appendChild(cartItem);
+            });
+          }
+
+          cartTotalDisplay.textContent = total.toLocaleString('pt-AO', {
+            style: 'currency',
+            currency: 'AOA',
+          });
+          cartCountDisplay.textContent = cart.reduce((acc, item) => acc + item.quantity, 0).toString();
+        };
+
+        // Event listeners
+        drawerToggle.addEventListener('click', toggleDrawer);
+        drawerClose.addEventListener('click', toggleDrawer);
+        cartButton.addEventListener('click', toggleCartDrawer);
+        cartDrawerClose.addEventListener('click', toggleCartDrawer);
+        closeProductModal.addEventListener('click', closeProductModalFunc);
+        overlay.addEventListener('click', () => {
+          toggleDrawer();
+          toggleCartDrawer();
+          closeProductModalFunc();
+        });
+
+        // Generate product cards
+        productsData.forEach((product) => {
+          const productCard = document.createElement('div');
+          productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden';
+          productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover cursor-pointer" onclick="openProductModal(productsData.find(p => p.id === '${product.id}'))">
+            <div class="p-4">
+              <h3 class="text-green-900 font-bold text-lg select-none">${product.name}</h3>
+              <p class="text-green-700 select-none">${product.price.toLocaleString('pt-AO', {
+                style: 'currency',
+                currency: 'AOA',
+              })} / ${product.unit}</p>
+              <button class="mt-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition w-full" onclick="addToCart(productsData.find(p => p.id === '${product.id}'))">
+                <i class="fas fa-cart-plus mr-2"></i> Adicionar
+              </button>
+            </div>
+          `;
+          productsGrid.appendChild(productCard);
+        });
+      });
+    </script>
+  </body>
 </html>
