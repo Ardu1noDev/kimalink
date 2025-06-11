@@ -7,6 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
   <style>
+    /* ... seu CSS existente ... */
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     body {
       font-family: "Roboto", sans-serif;
@@ -80,7 +81,6 @@
       color: #5a9a2b;
       margin-top: 1rem;
     }
-    /* Estilo para esconder o formulário antes da verificação */
     .hidden {
       display: none;
     }
@@ -112,76 +112,101 @@
   </div>
 
   <script type="module">
-    // Importe a função salvarUsuario do seu arquivo firestoreUtils.js
-    // Certifique-se de que firestoreUtils.js está configurado para o Firebase Firestore
-    import { salvarUsuario } from "./firestoreUtils.js";
+    // Importações do Firebase
+    import { auth, db } from "./firebase.js"; // Certifique-se que 'db' também é exportado
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
     const formContainer = document.getElementById('formContainer');
     const compradorForm = document.getElementById('comprador-form');
     const mensagemConfirmacao = document.getElementById('mensagem-confirmacao');
 
-    // --- Lógica para verificar se o usuário já se cadastrou ---
-    function verificarCadastroExistente() {
-      const usuarioJaCadastrado = localStorage.getItem('usuarioCadastrado');
+    // Inicialmente esconde o formulário para evitar flash enquanto verifica o status
+    formContainer.classList.add('hidden');
 
-      if (usuarioJaCadastrado === 'true') {
-        // Se o usuário já se cadastrou, redireciona para a página de produtos
-        window.location.href = "products.html";
-        return true; // Indica que o redirecionamento ocorreu
-      }
-      return false; // Indica que o formulário deve ser exibido
-    }
+    onAuthStateChanged(auth, async (user) => {
+        if (user) {
+            // Usuário está logado, agora verificar se já se cadastrou
+            const usuarioJaCadastrado = localStorage.getItem('usuarioCadastrado');
 
-    // Executa a verificação assim que o script é carregado
-    if (!verificarCadastroExistente()) {
-      // Se não houver cadastro, remove a classe 'hidden' para mostrar o formulário
-      formContainer.classList.remove('hidden');
-    } else {
-      // Se houver cadastro e o redirecionamento ocorreu,
-      // podemos adicionar 'hidden' ao container para evitar um flash de conteúdo.
-      formContainer.classList.add('hidden');
-    }
+            if (usuarioJaCadastrado === 'true') {
+                console.log("Usuário logado e já cadastrado. Redirecionando para products.html");
+                window.location.href = "products.html";
+            } else {
+                // Usuário logado, mas ainda não cadastrado. Mostra o formulário.
+                console.log("Usuário logado, mas precisa completar o cadastro.");
+                formContainer.classList.remove('hidden');
 
-    // --- Lógica de submissão do formulário ---
+                // Preenche o email se disponível
+                document.getElementById('email').value = user.email || '';
+                // Se tiver o nome do usuário do Google Auth, preencha também
+                document.getElementById('nome').value = user.displayName || '';
+            }
+        } else {
+            // Usuário NÃO logado, redireciona para a tela de login
+            console.log("Nenhum usuário logado. Redirecionando para login.html");
+            window.location.href = "login.html";
+        }
+    });
+
     compradorForm.addEventListener('submit', async function(event) {
-      event.preventDefault(); // Impede o envio padrão do formulário
+      event.preventDefault();
+
+      const user = auth.currentUser; // Obter o usuário logado atualmente
+      if (!user) {
+          // Isso não deveria acontecer se o onAuthStateChanged estiver funcionando corretamente,
+          // mas é um fallback de segurança.
+          alert("Você precisa estar logado para cadastrar!");
+          window.location.href = "login.html";
+          return;
+      }
 
       const nome = document.getElementById('nome').value;
       const email = document.getElementById('email').value;
       const telefone = document.getElementById('telefone').value;
       const endereco = document.getElementById('endereco').value;
 
-      mensagemConfirmacao.style.display = "none"; // Esconde a mensagem anterior
+      const avatarSelecionado = localStorage.getItem('avatarSelecionado') || 'banana.png'; // Fallback para um avatar padrão
+
+      mensagemConfirmacao.style.display = "none";
+      mensagemConfirmacao.textContent = "Salvando dados...";
+      mensagemConfirmacao.style.color = "gray";
+      mensagemConfirmacao.style.display = "block";
+
 
       try {
-        const id = await salvarUsuario({
-          nome,
-          email,
-          telefone,
-          endereco,
-          tipo: "comprador"
+        // Usar setDoc com o UID do usuário como ID do documento
+        await setDoc(doc(db, "usuarios", user.uid), {
+          nome: nome,
+          email: email,
+          telefone: telefone,
+          endereco: endereco,
+          tipo: "comprador", // Define o tipo de usuário
+          avatarURL: `assets/${avatarSelecionado}`, // Salva o caminho completo do avatar
+          uid: user.uid // Salva o UID do Firebase no documento também
         });
 
-        // Se o cadastro foi um sucesso no Firestore:
-        localStorage.setItem('usuarioCadastrado', 'true'); // Marca no localStorage
-        localStorage.setItem('ultimoEmailCadastrado', email); // Opcional: salva o email
+        localStorage.setItem('usuarioCadastrado', 'true');
+        localStorage.setItem('ultimoEmailCadastrado', email); // Pode ser útil, mas não obrigatório com UID
+        localStorage.removeItem('avatarSelecionado'); // Limpa o localStorage do avatar após usar
 
-        mensagemConfirmacao.textContent = `Conta criada com sucesso! ID: ${id}. Redirecionando...`;
+        mensagemConfirmacao.textContent = `Cadastro concluído com sucesso! Redirecionando...`;
         mensagemConfirmacao.style.color = "green";
         mensagemConfirmacao.style.display = "block";
 
-        // Aguarda 2 segundos antes de redirecionar
         setTimeout(() => {
           window.location.href = "products.html";
-        }, 2000); // 2000ms = 2 segundos
+        }, 2000); // Redireciona após 2 segundos
 
       } catch (error) {
         mensagemConfirmacao.textContent = "Erro ao salvar os dados. Por favor, tente novamente.";
         mensagemConfirmacao.style.color = "red";
         mensagemConfirmacao.style.display = "block";
-        console.error("Erro ao salvar dados:", error);
+        console.error("Erro ao salvar dados do usuário:", error);
       }
     });
   </script>
+
 </body>
 </html>

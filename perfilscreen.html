@@ -1,105 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Perfil do Usuário - App Agropecuário</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(180deg, #8fcf6e 0%, #ffffff 100%);
-      min-height: 100vh;
-    }
-  </style>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfil do Usuário - App Agropecuário</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #8fcf6e 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
 </head>
 <body class="flex justify-center items-start pt-12 px-4">
 
-  <div class="bg-white rounded-3xl shadow-lg w-full max-w-md p-8">
-    <!-- Foto do usuário -->
-    <div class="flex justify-center -mt-20 mb-6">
-      <img id="avatar" alt="Foto do usuário" class="w-32 h-32 rounded-full border-4 border-white object-cover" src="default.jpg" />
+    <div class="bg-white rounded-3xl shadow-lg w-full max-w-md p-8">
+        <div class="flex justify-center -mt-20 mb-6">
+            <img id="avatar" alt="Foto do usuário" class="w-32 h-32 rounded-full border-4 border-white object-cover" src="assets/banana.png" />
+        </div>
+
+        <div class="text-center mb-6">
+            <h1 id="nome" class="text-3xl font-semibold text-gray-800"></h1>
+            <p id="endereco" class="text-green-700 text-sm mt-1"></p>
+        </div>
+
+        <div class="space-y-6">
+            <div>
+                <h2 class="text-green-700 font-semibold mb-2">Informações de Contato</h2>
+                <p class="text-gray-700">
+                    <i class="fas fa-envelope mr-2 text-green-600"></i>
+                    <span id="email"></span>
+                </p>
+                <p class="text-gray-700 mt-1">
+                    <i class="fas fa-phone mr-2 text-green-600"></i>
+                    <span id="telefone"></span>
+                </p>
+            </div>
+
+            <div>
+                <h2 class="text-green-700 font-semibold mb-2">Preferências</h2>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Produtos orgânicos</li>
+                    <li>Entrega rápida</li>
+                    <li>Pagamento via Pix</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2 class="text-green-700 font-semibold mb-2">Histórico de Compras</h2>
+                <ul class="text-gray-700 space-y-1">
+                    <li>🌽 Milho - 20/04/2024</li>
+                    <li>🍅 Tomate - 15/04/2024</li>
+                    <li>🥬 Alface - 10/04/2024</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-10 flex justify-center">
+            <button id="back-to-products-button" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-8 rounded-full shadow-md transition-colors duration-300" type="button">
+                Voltar aos Produtos
+            </button>
+        </div>
     </div>
 
-   <!-- Nome e localização -->
-<div class="text-center mb-6">
-    <h1 id="nome" class="text-3xl font-semibold text-gray-800">Nome do Usuário</h1>
-    <p id="cidade" class="text-green-700 text-sm mt-1">Cidade, Estado</p>
-  </div>
-  
-  <!-- Informações do perfil -->
-  <div class="space-y-6">
-    <div>
-      <h2 class="text-green-700 font-semibold mb-2">Informações de Contato</h2>
-      <p class="text-gray-700">
-        <i class="fas fa-envelope mr-2 text-green-600"></i>
-        <span id="email">email@exemplo.com</span>
-      </p>
-      <p class="text-gray-700 mt-1">
-        <i class="fas fa-phone mr-2 text-green-600"></i>
-        <span id="telefone">(00) 00000-0000</span>
-      </p>
-    </div>
-  </div>
-  
+    <script type="module">
+        import { auth, db } from './firebase.js'; // Assegure-se de que firebase.js exporta 'auth' e 'db'
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        // Não precisamos mais do signOut aqui, já que o botão é "Voltar"
 
-      <div>
-        <h2 class="text-green-700 font-semibold mb-2">Preferências</h2>
-        <ul class="list-disc list-inside text-gray-700">
-          <li>Produtos orgânicos</li>
-          <li>Entrega rápida</li>
-          <li>Pagamento via Pix</li>
-        </ul>
-      </div>
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                try {
+                    const ref = doc(db, "usuarios", user.uid); // Assumindo que o ID do documento é o UID do usuário
+                    const snapshot = await getDoc(ref);
 
-      <div>
-        <h2 class="text-green-700 font-semibold mb-2">Histórico de Compras</h2>
-        <ul class="text-gray-700 space-y-1">
-          <li>🌽 Milho - 20/04/2024</li>
-          <li>🍅 Tomate - 15/04/2024</li>
-          <li>🥬 Alface - 10/04/2024</li>
-        </ul>
-      </div>
-    </div>
+                    if (snapshot.exists()) {
+                        const data = snapshot.data();
+                        // Preenche os campos com os dados do Firestore
+                        document.getElementById("nome").textContent = data.nome || "Nome não informado";
+                        document.getElementById("email").textContent = data.email || "Email não informado";
+                        document.getElementById("telefone").textContent = data.telefone || "Telefone não informado";
+                        document.getElementById("endereco").textContent = data.endereco || "Endereço não informado";
+                        document.getElementById("avatar").src = data.avatarURL || "assets/banana.png";
+                    } else {
+                        console.warn("Documento do usuário não encontrado no Firestore para o UID:", user.uid);
+                        // Se o documento não existe, preenche com informações padrão ou mensagem
+                        document.getElementById("nome").textContent = "Usuário sem cadastro completo";
+                        document.getElementById("email").textContent = user.email || "E-mail do Firebase";
+                        document.getElementById("telefone").textContent = "N/A";
+                        document.getElementById("endereco").textContent = "N/A";
+                        document.getElementById("avatar").src = "assets/banana.png"; // Avatar padrão
+                    }
+                } catch (e) {
+                    console.error("Erro ao carregar perfil:", e);
+                    alert("Ocorreu um erro ao carregar seu perfil. Tente recarregar a página.");
+                }
+            } else {
+                // Se não estiver logado, redirecionar para a página de login
+                window.location.href = "login.html";
+            }
+        });
 
-    <!-- Botão Editar Perfil -->
-    <div class="mt-10 flex justify-center">
-      <button class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-10 rounded-full shadow-md transition-colors duration-300" type="button">
-        Editar Perfil
-      </button>
-    </div>
-  </div>
-
-  <!-- Script Firebase -->
-  <script type="module">
-    import { auth, db } from './firebase.js';
-    import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        try {
-          const ref = doc(db, "usuarios", user.uid);
-          const snapshot = await getDoc(ref);
-
-          if (snapshot.exists()) {
-            const data = snapshot.data();
-            document.getElementById("nome").textContent = data.nome || "Sem nome";
-            document.getElementById("email").textContent = data.email || "Sem e-mail";
-            document.getElementById("telefone").textContent = data.telefone || "Sem telefone";
-            document.getElementById("cidade").textContent = data.cidade || "Sem cidade";
-            document.getElementById("avatar").src = data.avatarURL || "default.jpg";
-          } else {
-            console.warn("Documento do usuário não encontrado.");
-          }
-        } catch (e) {
-          console.error("Erro ao carregar perfil:", e);
-        }
-      } else {
-        // Se não estiver logado, redirecionar
-        window.location.href = "login.html";
-      }
-    });
-  </script>
+        // Adiciona funcionalidade ao novo botão "Voltar aos Produtos"
+        document.getElementById('back-to-products-button').addEventListener('click', () => {
+            window.location.href = "products.html"; // Redireciona para a tela de produtos
+        });
+    </script>
 </body>
 </html>
-

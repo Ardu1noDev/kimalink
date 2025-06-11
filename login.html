@@ -10,14 +10,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* Opcional: Adiciona uma classe para esconder o conteúdo enquanto verifica o status de login */
-    .hidden {
+    /* Opcional: Para esconder o conteúdo enquanto a verificação de login ocorre */
+    body.loading .content-hide {
       display: none;
     }
   </style>
 </head>
-<body class="bg-light d-flex justify-content-center align-items-center vh-100">
-  <div class="bg-white rounded-4 shadow p-4 text-center" style="width: 300px;" id="loginContainer">
+<body class="bg-light d-flex justify-content-center align-items-center vh-100 loading">
+  <div class="bg-white rounded-4 shadow p-4 text-center content-hide" style="width: 300px;">
     <img alt="Logo KimaLink" class="mb-3" width="80" src="assets/kimalink.png" />
     <h2 class="text-success mb-3">Login</h2>
     <button id="google-login" class="btn btn-outline-dark w-100">
@@ -26,47 +26,46 @@
   </div>
 
   <script type="module">
-    // Importe 'auth' do seu arquivo firebase.js
-    // Importe 'signInWithPopup' e 'onAuthStateChanged' do Firebase Authentication SDK
-    import { auth, provider } from "./firebase.js";
+    // Importações do Firebase Auth
+    import { auth, provider } from "./firebase.js"; // Certifique-se de que 'auth' e 'provider' são exportados
     import { signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    const loginContainer = document.getElementById('loginContainer');
-    const googleLoginButton = document.getElementById('google-login');
+    // Adiciona uma classe ao body para esconder o conteúdo inicialmente
+    document.body.classList.add('loading');
 
-    // Inicialmente esconde o container de login para evitar "flash" antes da verificação
-    loginContainer.classList.add('hidden');
-
-    // --- Verifica o status de autenticação ao carregar a página ---
+    // --- Verificação do estado de autenticação ao carregar a página ---
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // Usuário já está logado
-        console.log("Usuário já autenticado:", user.uid);
-        // Redireciona imediatamente para a próxima página (avatarscreen.html)
+        console.log("Usuário já logado. Redirecionando para avatarscreen.html");
         window.location.href = "avatarscreen.html";
       } else {
         // Usuário não está logado, mostra a tela de login
         console.log("Nenhum usuário logado. Mostrando tela de login.");
-        loginContainer.classList.remove('hidden'); // Mostra o container de login
+        document.body.classList.remove('loading'); // Remove a classe 'loading' para mostrar o conteúdo
+        document.querySelector('.content-hide').classList.remove('content-hide'); // Remove a classe de esconder
       }
     });
 
-    // --- Adiciona o listener para o botão de login do Google ---
-    // Este listener só será ativo se o usuário não estiver logado e o botão for visível
+    // --- Lógica de Login com Google ---
+    // Este código só será executado se o usuário não for redirecionado acima
     document.addEventListener("DOMContentLoaded", () => {
-      googleLoginButton.addEventListener("click", async () => {
-        try {
-          const result = await signInWithPopup(auth, provider);
-          console.log("Usuário autenticado via pop-up:", result.user);
-          // Após login bem-sucedido, redireciona
-          window.location.href = "avatarscreen.html";
-        } catch (error) {
-          console.error("Erro ao fazer login:", error);
-          // Erros comuns: pop-up bloqueado, usuário fechou, etc.
-          // Você pode adicionar mais lógica aqui para tipos específicos de erro
-          alert("Falha no login! Por favor, tente novamente ou verifique as permissões do pop-up.");
-        }
-      });
+      const googleLoginButton = document.getElementById("google-login");
+
+      // Adiciona o event listener somente se o botão existir e a tela não tiver sido pulada
+      if (googleLoginButton) {
+        googleLoginButton.addEventListener("click", async () => {
+          try {
+            const result = await signInWithPopup(auth, provider);
+            console.log("Usuário autenticado com Google:", result.user);
+            // Após o login bem-sucedido, redireciona para a próxima etapa
+            window.location.href = "avatarscreen.html";
+          } catch (error) {
+            console.error("Erro ao fazer login:", error);
+            alert("Falha no login! Verifique sua conta e as configurações de domínio autorizado no Firebase Console.");
+          }
+        });
+      }
     });
   </script>
 </body>
