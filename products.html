@@ -149,8 +149,7 @@
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
         id="productsGrid"
-      >
-        </div>
+      ></div>
     </main>
 
     <div
@@ -177,8 +176,7 @@
             <p id="modalProductDescription" class="text-gray-700 text-sm mb-4"></p>
 
             <h3 class="text-green-900 font-semibold text-base mb-2">Valores Nutricionais:</h3>
-            <ul id="modalNutritionalValues" class="list-disc list-inside text-gray-600 text-sm mb-4">
-              </ul>
+            <ul id="modalNutritionalValues" class="list-disc list-inside text-gray-600 text-sm mb-4"></ul>
 
             <h3 class="text-green-900 font-semibold text-base mb-2">Como Preparar:</h3>
             <p id="modalPreparation" class="text-gray-600 text-sm mb-4"></p>
@@ -195,15 +193,61 @@
     </div>
 
     <script>
-      // Data for products - UPDATED IMAGE PATHS
+      // Data for products
       const productsData = [
         {
-          id: 'costela-de-osso-de-bovino',
-          name: 'Costela de osso de bovino',
-          price: 4500, // Price in Kwanza
+          id: 'alface-crespa',
+          name: 'Alface Crespa',
+          price: 550, // Price in Kwanza
           unit: 'kg', // Unit of sale
-          image: './assets/carne/costela de osso de bovino.jpg', // Updated path
-          description: 'Costela de osso de bovino fresca, ideal para churrascos ou pratos do dia a dia.',
+          image: 'https://storage.googleapis.com/a1aa/image/0107c4ce-9320-425a-b7ab-404729257d23.jpg',
+          description: 'Alface crespa fresca, crocante e ideal para saladas. Cultivada sem agrotóxicos.',
+          nutritionalValues: [
+            'Calorias: 15 kcal',
+            'Carboidratos: 2.9 g',
+            'Proteínas: 1.4 g',
+            'Fibras: 1.2 g',
+            'Vitaminas A e K',
+          ],
+          preparation: 'Lave bem as folhas em água corrente, seque e utilize em saladas, sanduíches ou sucos verdes.',
+        },
+        {
+          id: 'tomate-italiano',
+          name: 'Tomate Italiano',
+          price: 700, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/9c683d98-2ead-4681-fb49-4bcc5a7b77fa.jpg',
+          description: 'Tomates italianos maduros e suculentos, perfeitos para molhos e saladas.',
+          nutritionalValues: [
+            'Calorias: 18 kcal',
+            'Carboidratos: 3.9 g',
+            'Proteínas: 0.9 g',
+            'Vitamina C e Licopeno',
+          ],
+          preparation: 'Pode ser consumido in natura em saladas, assado, ou utilizado para preparar molhos e bruschettas.',
+        },
+        {
+          id: 'pimenta-do-reino',
+          name: 'Pimenta do Reino',
+          price: 1200, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/4934270b-874e-4352-447f-80ab25269dd9.jpg',
+          description: 'Grãos de pimenta do reino preta, ideais para temperar e dar um toque especial aos seus pratos.',
+          nutritionalValues: [
+            'Calorias: 251 kcal',
+            'Carboidratos: 64 g',
+            'Fibras: 25 g',
+            'Potássio e Ferro',
+          ],
+          preparation: 'Moer na hora para temperar carnes, aves, peixes, sopas e vegetais. Adicione no final do preparo para preservar o aroma.',
+        },
+        {
+          id: 'carne-bovina',
+          name: 'Carne Bovina',
+          price: 4500, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/e31193d6-b358-4d1d-a64a-6292e2bb0dcb.jpg',
+          description: 'Corte fresco de carne bovina, ideal para churrascos ou pratos do dia a dia.',
           nutritionalValues: [
             'Calorias: 250 kcal (por 100g)',
             'Proteínas: 26 g (por 100g)',
@@ -213,84 +257,154 @@
           preparation: 'Grelhar, assar ou cozinhar conforme a preferência. Tempere com sal grosso, pimenta do reino e ervas a gosto.',
         },
         {
-           id: 'costeleta-de-carneiro',
-          name: 'Costeleta de carneiro',
+          id: 'cenoura-organica',
+          name: 'Cenoura Orgânica',
+          price: 650, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/77f4c4bb-82f7-4b22-3099-c004ac85b13d.jpg',
+          description: 'Cenouras orgânicas frescas e saborosas, ricas em vitaminas e minerais.',
+          nutritionalValues: [
+            'Calorias: 41 kcal',
+            'Carboidratos: 9.6 g',
+            'Fibras: 2.8 g',
+            'Vitamina A (Betacaroteno)',
+          ],
+          preparation: 'Pode ser consumida crua em saladas, sucos, cozida em sopas, ou assada como acompanhamento.',
+        },
+        {
+          id: 'coentro-fresco',
+          name: 'Coentro Fresco',
+          price: 400, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/f5ab2bcd-403f-44c0-4954-30363013ae0d.jpg',
+          description: 'Maço de coentro fresco, ideal para temperar pratos e dar um toque de frescor.',
+          nutritionalValues: [
+            'Calorias: 23 kcal',
+            'Vitamina K e A',
+            'Antioxidantes',
+          ],
+          preparation: 'Pique finamente e adicione a ensopados, molhos, peixes, ou decore pratos. Use fresco para melhor sabor.',
+        },
+        {
+          id: 'alho-roxo',
+          name: 'Alho Roxo',
+          price: 1000, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/10f14451-9bd2-4112-9d15-290c53490b30.jpg',
+          description: 'Alho roxo de alta qualidade, com sabor intenso e aroma marcante.',
+          nutritionalValues: [
+            'Calorias: 149 kcal',
+            'Carboidratos: 33 g',
+            'Vitamina B6 e C',
+            'Aliicina (propriedades medicinais)',
+          ],
+          preparation: 'Utilize em refogados, molhos, marinadas, ou assado. Amasse, pique ou fatie conforme a receita.',
+        },
+        {
+          id: 'frango-caipira',
+          name: 'Frango Caipira',
+          price: 3000, // Price in Kwanza
+          unit: 'kg',
+          image: 'https://storage.googleapis.com/a1aa/image/936194c8-f949-40f2-dad7-b79e078bfaeb.jpg',
+          description: 'Frango caipira inteiro, criado solto e com alimentação natural. Sabor autêntico.',
+          nutritionalValues: [
+            'Calorias: 165 kcal (por 100g)',
+            'Proteínas: 31 g (por 100g)',
+            'Selênio e Fósforo',
+            'Vitaminas B3 e B6',
+          ],
+          preparation: 'Assar, cozinhar em ensopados, ou desfiar para recheios. Tempere com ervas, alho, limão e especiarias.',
+        },
+        // Novos produtos adicionados com base nas suas especificações
+        {
+          id: 'costela-de-osso-de-bovino',
+          name: 'Costela de Osso de Bovino',
+          price: 4500,
+          unit: 'kg',
+          image: './assets/carne/costela de osso de bovino.jpg',
+          description: 'Costela de osso de bovino fresca, ideal para churrascos ou pratos do dia a dia.',
+          nutritionalValues: ['Proteínas', 'Ferro', 'Vitaminas do Complexo B'],
+          preparation: 'Grelhar, assar ou cozinhar lentamente.',
+        },
+        {
+          id: 'costeleta-de-carneiro',
+          name: 'Costeleta de Carneiro',
           price: 5500,
           unit: 'kg',
           image: './assets/carne/costeleta de carneiro.jpg',
-          description: 'Costeletas tenras e saborosas, perfeitas para um jantar especial.',
-          nutritionalValues: ['Proteínas', 'Ferro', 'Vitaminas B12'],
-          preparation: 'Grelhar ou assar até o ponto desejado.  Marinar antes para melhor sabor.',
+          description: 'Costeletas tenras e saborosas de carneiro, perfeitas para um jantar especial.',
+          nutritionalValues: ['Proteínas', 'Zinco', 'Ferro'],
+          preparation: 'Grelhar ou assar no forno até o ponto desejado.',
         },
         {
           id: 'coxa-de-frango',
-          name: 'Coxa de frango',
+          name: 'Coxa de Frango',
           price: 1800,
           unit: 'kg',
           image: './assets/carne/coxa de frango.jpg',
           description: 'Coxas de frango suculentas e versáteis, ótimas para diversas receitas.',
-          nutritionalValues: ['Proteínas', 'Vitaminas B', 'Ferro'],
-          preparation: 'Assar, grelhar, ou cozinhar.  Temperar a gosto.',
+          nutritionalValues: ['Proteínas', 'Vitaminas B6', 'Fósforo'],
+          preparation: 'Assar, fritar, cozinhar em molhos.',
         },
         {
           id: 'figado-bovino',
-          name: 'Fígado bovino',
+          name: 'Fígado Bovino',
           price: 1200,
           unit: 'kg',
           image: './assets/carne/figado bovino.jpg',
-          description: 'Fígado bovino fresco, rico em nutrientes.',
-          nutritionalValues: ['Ferro', 'Vitaminas', 'Proteínas'],
-          preparation: 'Fritar ou grelhar rapidamente.  Temperar com alho e cebola.',
+          description: 'Fígado bovino fresco, rico em ferro e vitaminas.',
+          nutritionalValues: ['Ferro', 'Vitamina A', 'Vitamina B12'],
+          preparation: 'Fritar em rodelas com cebola ou refogar.',
         },
         {
-          id: 'frango',
-          name: 'Frango',
+          id: 'franco',
+          name: 'Frango Inteiro',
           price: 2500,
-          unit: 'kg',
-          image: './assets/carne/frango.jpg',
-          description: 'Frango inteiro, ideal para assados ou ensopados.',
-          nutritionalValues: ['Proteínas', 'Vitaminas B', 'Selênio'],
-          preparation: 'Assar, cozinhar, ou grelhar.  Temperar a gosto.',
+          unit: 'un',
+          image: './assets/carne/franco.jpg',
+          description: 'Frango inteiro fresco, pronto para o seu assado ou ensopado.',
+          nutritionalValues: ['Proteínas', 'Niacina', 'Selênio'],
+          preparation: 'Assar no forno, cozinhar em panela de pressão ou grelhar em pedaços.',
         },
         {
           id: 'patinha',
-          name: 'Patinha',
+          name: 'Patinha de Porco',
           price: 900,
           unit: 'kg',
-           image: './assets/carne/patinha.jpg',
-          description: 'Patinha de frango, ideal para caldos e sopas.',
-          nutritionalValues: ['Colágeno', 'Proteínas'],
-          preparation: 'Cozinhar em caldos ou sopas.  Temperar a gosto.',
+          image: './assets/carne/patinha.jpg',
+          description: 'Patinha de porco fresca, ótima para caldos e ensopados robustos.',
+          nutritionalValues: ['Colágeno', 'Proteínas', 'Minerais'],
+          preparation: 'Cozinhar lentamente em ensopados ou feijoadas.',
         },
         {
           id: 'peixe',
-          name: 'Peixe',
+          name: 'Peixe Fresco',
           price: 3200,
           unit: 'kg',
           image: './assets/carne/peixe.jpg',
-          description: 'Peixe fresco, rico em ômega 3.',
-          nutritionalValues: ['Ômega 3', 'Proteínas', 'Vitaminas D'],
-          preparation: 'Assar, grelhar, ou fritar.  Temperar com limão e ervas.',
+          description: 'Peixe fresco do dia, excelente fonte de ômega-3.',
+          nutritionalValues: ['Ômega-3', 'Proteínas', 'Vitamina D'],
+          preparation: 'Grelhar, assar, fritar ou cozinhar no vapor.',
         },
-         {
+        {
           id: 'picanha',
           name: 'Picanha',
           price: 6000,
           unit: 'kg',
           image: './assets/carne/picanha.jpg',
-          description: 'Picanha bovina, corte nobre para churrasco.',
-          nutritionalValues: ['Proteínas', 'Ferro', 'Vitaminas B'],
-          preparation: 'Grelhar ou assar no churrasco.  Temperar com sal grosso.',
+          description: 'Corte nobre de picanha bovina, suculenta e ideal para churrasco.',
+          nutritionalValues: ['Proteínas', 'Ferro', 'Zinco'],
+          preparation: 'Grelhar na churrasqueira ou assar no forno.',
         },
-         {
+        {
           id: 'abacate',
           name: 'Abacate',
           price: 800,
           unit: 'un',
           image: './assets/frutas/abacate.jpg',
-          description: 'Abacate cremoso e nutritivo.',
-          nutritionalValues: ['Gorduras saudáveis', 'Vitaminas', 'Fibras'],
-          preparation: 'Consumir in natura, em saladas ou guacamole.',
+          description: 'Abacate maduro e cremoso, rico em gorduras saudáveis.',
+          nutritionalValues: ['Gorduras Monosaturadas', 'Vitamina K', 'Potássio', 'Fibras'],
+          preparation: 'Consumir in natura, em saladas, vitaminas ou guacamole.',
         },
         {
           id: 'banana',
@@ -298,9 +412,9 @@
           price: 300,
           unit: 'kg',
           image: './assets/frutas/banana.jpg',
-          description: 'Banana doce e energética.',
-          nutritionalValues: ['Potássio', 'Vitaminas B6', 'Fibras'],
-          preparation: 'Consumir in natura ou em sobremesas.',
+          description: 'Banana doce e energética, ótima para qualquer hora do dia.',
+          nutritionalValues: ['Potássio', 'Vitamina B6', 'Fibras'],
+          preparation: 'Consumir in natura, em vitaminas, fatias com aveia ou assada.',
         },
         {
           id: 'abacaxi',
@@ -308,19 +422,19 @@
           price: 700,
           unit: 'un',
           image: './assets/frutas/abacaxi.jpg',
-          description: 'Abacaxi doce e refrescante.',
-          nutritionalValues: ['Vitamina C', 'Manganês', 'Fibras'],
-          preparation: 'Consumir in natura ou em sucos.',
+          description: 'Abacaxi suculento e refrescante, com sabor tropical.',
+          nutritionalValues: ['Vitamina C', 'Manganês', 'Bromelina'],
+          preparation: 'Consumir em fatias, sucos, sobremesas ou grelhado.',
         },
         {
-           id: 'jindungo',
+          id: 'jindungo',
           name: 'Jindungo',
           price: 200,
           unit: 'un',
           image: './assets/frutas/jindungo.jpg',
-          description: 'Jindungo picante.',
-          nutritionalValues: ['Vitaminas', 'Antioxidantes'],
-          preparation: 'Usar com moderação para temperar.',
+          description: 'Pimentas Jindungo frescas e picantes para dar um toque especial aos seus pratos.',
+          nutritionalValues: ['Vitamina C', 'Capsaicina'],
+          preparation: 'Utilizar em molhos, temperos ou para acompanhar pratos quentes.',
         },
         {
           id: 'kiwi',
@@ -328,9 +442,9 @@
           price: 500,
           unit: 'un',
           image: './assets/frutas/kiwi.jpg',
-          description: 'Kiwi saboroso e rico em vitamina C.',
-          nutritionalValues: ['Vitamina C', 'Fibras', 'Antioxidantes'],
-          preparation: 'Consumir in natura ou em saladas de frutas.',
+          description: 'Kiwi exótico e nutritivo, com um sabor único.',
+          nutritionalValues: ['Vitamina C', 'Vitamina K', 'Fibras'],
+          preparation: 'Consumir in natura, em saladas de frutas ou sumos.',
         },
         {
           id: 'limao',
@@ -338,9 +452,9 @@
           price: 150,
           unit: 'un',
           image: './assets/frutas/limão.jpg',
-          description: 'Limão fresco e ácido.',
+          description: 'Limão fresco e ácido, perfeito para temperos e bebidas.',
           nutritionalValues: ['Vitamina C', 'Antioxidantes'],
-          preparation: 'Usar em bebidas, temperos ou sobremesas.',
+          preparation: 'Usar em limonadas, temperar saladas, carnes e peixes, ou em sobremesas.',
         },
         {
           id: 'manga',
@@ -348,9 +462,9 @@
           price: 600,
           unit: 'un',
           image: './assets/frutas/manga.jpg',
-          description: 'Manga doce e suculenta.',
-          nutritionalValues: ['Vitaminas A e C', 'Fibras'],
-          preparation: 'Consumir in natura ou em sucos.',
+          description: 'Manga suculenta e doce, com sabor tropical intenso.',
+          nutritionalValues: ['Vitamina A', 'Vitamina C', 'Fibras'],
+          preparation: 'Consumir in natura, em sumos, batidos ou sobremesas.',
         },
         {
           id: 'melancia',
@@ -358,9 +472,9 @@
           price: 400,
           unit: 'kg',
           image: './assets/frutas/melancia.jpg',
-          description: 'Melancia refrescante e hidratante.',
-          nutritionalValues: ['Vitaminas A e C', 'Hidratação'],
-          preparation: 'Consumir in natura.',
+          description: 'Melancia grande e refrescante, ideal para se hidratar.',
+          nutritionalValues: ['Citrulina', 'Vitamina C', 'Licopeno', 'Hidratação'],
+          preparation: 'Consumir em fatias, sumos ou saladas de frutas.',
         },
         {
           id: 'tomate',
@@ -368,29 +482,29 @@
           price: 350,
           unit: 'kg',
           image: './assets/frutas/tomate.jpg',
-          description: 'Tomate maduro e saboroso.',
-          nutritionalValues: ['Vitaminas A e C', 'Licopeno'],
-          preparation: 'Usar em saladas, molhos ou sucos.',
+          description: 'Tomates maduros e versáteis, essenciais na cozinha.',
+          nutritionalValues: ['Vitamina C', 'Licopeno', 'Vitamina K'],
+          preparation: 'Usar em saladas, molhos, sanduíches ou refogados.',
         },
-         {
+        {
           id: 'couve',
           name: 'Couve',
           price: 250,
           unit: 'kg',
           image: './assets/legumes/couve.jpg',
-          description: 'Couve fresca e nutritiva.',
-          nutritionalValues: ['Vitaminas K e C', 'Fibras'],
-          preparation: 'Usar em saladas, sucos ou cozida.',
+          description: 'Couve fresca e nutritiva, excelente para diversas receitas.',
+          nutritionalValues: ['Vitamina K', 'Vitamina C', 'Fibras'],
+          preparation: 'Refogar, usar em sopas, saladas ou sumos verdes.',
         },
-         {
+        {
           id: 'gengibre',
           name: 'Gengibre',
           price: 900,
           unit: 'kg',
           image: './assets/legumes/gengibre.jpg',
-          description: 'Gengibre fresco e picante.',
-          nutritionalValues: ['Antioxidantes', 'Anti-inflamatório'],
-          preparation: 'Usar em chás, temperos ou sucos.',
+          description: 'Raiz de gengibre fresca, com sabor picante e propriedades medicinais.',
+          nutritionalValues: ['Gingerol', 'Antioxidantes', 'Anti-inflamatório'],
+          preparation: 'Fazer chás, temperar pratos doces e salgados, ou adicionar a sumos.',
         },
         {
           id: 'milho',
@@ -398,19 +512,9 @@
           price: 300,
           unit: 'un',
           image: './assets/legumes/milho.jpg',
-          description: 'Milho doce e saboroso.',
-          nutritionalValues: ['Fibras', 'Vitaminas B'],
-          preparation: 'Cozinhar, assar ou usar em saladas.',
-        },
-        {
-          id: 'cenoura',
-          name: 'Cenoura',
-          price: 400,
-          unit: 'kg',
-          image: './assets/vegetais/cenoura.jpg',
-          description: 'Cenoura crocante e rica em vitaminas.',
-          nutritionalValues: ['Vitamina A', 'Fibras'],
-          preparation: 'Consumir crua, cozida ou em sucos.',
+          description: 'Espigas de milho doce, perfeitas para cozinhar ou assar.',
+          nutritionalValues: ['Fibras', 'Vitaminas B', 'Carboidratos'],
+          preparation: 'Cozinhar, assar na brasa ou na espiga, ou usar em saladas.',
         },
         {
           id: 'batata',
@@ -418,9 +522,9 @@
           price: 350,
           unit: 'kg',
           image: './assets/vegetais/batata.jpg',
-          description: 'Batata versátil e nutritiva.',
-          nutritionalValues: ['Carboidratos', 'Potássio', 'Vitaminas C'],
-          preparation: 'Cozinhar, assar, fritar ou usar em purês.',
+          description: 'Batata fresca e versátil, base para muitos pratos.',
+          nutritionalValues: ['Carboidratos', 'Potássio', 'Vitamina C'],
+          preparation: 'Cozinhar, fritar, assar, purê ou sopas.',
         },
         {
           id: 'alface',
@@ -428,9 +532,9 @@
           price: 250,
           unit: 'kg',
           image: './assets/vegetais/alface.jpg',
-          description: 'Alface fresca e crocante.',
-          nutritionalValues: ['Vitaminas A e K', 'Fibras'],
-          preparation: 'Usar em saladas ou sanduíches.',
+          description: 'Alface verde fresca e crocante, ideal para saladas leves.',
+          nutritionalValues: ['Vitamina K', 'Vitamina A', 'Fibras', 'Água'],
+          preparation: 'Lave bem as folhas e utilize em saladas ou sanduíches.',
         },
         {
           id: 'beringela',
@@ -438,9 +542,9 @@
           price: 500,
           unit: 'kg',
           image: './assets/vegetais/beringela.jpg',
-          description: 'Beringela saborosa e versátil.',
-          nutritionalValues: ['Fibras', 'Antioxidantes'],
-          preparation: 'Assar, grelhar ou usar em ensopados.',
+          description: 'Beringela fresca e saborosa, perfeita para pratos vegetarianos.',
+          nutritionalValues: ['Fibras', 'Antioxidantes', 'Vitamina K'],
+          preparation: 'Assar, grelhar, refogar ou usar em pratos como moussaka.',
         },
         {
           id: 'pepino',
@@ -448,9 +552,9 @@
           price: 300,
           unit: 'kg',
           image: './assets/vegetais/pepino.jpg',
-          description: 'Pepino refrescante e crocante.',
-          nutritionalValues: ['Hidratação', 'Vitaminas K'],
-          preparation: 'Usar em saladas ou conservas.',
+          description: 'Pepino refrescante e crocante, ótimo para saladas.',
+          nutritionalValues: ['Água', 'Vitamina K', 'Potássio'],
+          preparation: 'Consumir cru em saladas, sucos detox ou em sanduíches.',
         },
         {
           id: 'turtulho',
@@ -458,163 +562,292 @@
           price: 600,
           unit: 'kg',
           image: './assets/vegetais/turtulho.jpg',
-          description: 'Turtulho fresco e saboroso.',
-           nutritionalValues: ['Vitaminas', 'Fibras'],
-          preparation: 'Cozinhar ou usar em saladas.',
+          description: 'Turtulho fresco, ideal para sopas e ensopados, com sabor suave.',
+          nutritionalValues: ['Fibras', 'Vitaminas', 'Minerais'],
+          preparation: 'Cozinhar em sopas, guisados ou purês.',
         },
       ];
 
-      // JavaScript to handle drawer functionality, cart, and product display
-      document.addEventListener('DOMContentLoaded', () => {
-        const drawerToggle = document.getElementById('drawerToggle');
-        const drawerClose = document.getElementById('drawerClose');
-        const drawer = document.getElementById('drawer');
-        const cartButton = document.getElementById('cartButton');
-        const cartDrawer = document.getElementById('cartDrawer');
-        const cartDrawerClose = document.getElementById('cartDrawerClose');
-        const overlay = document.getElementById('overlay');
-        const productsGrid = document.getElementById('productsGrid');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotalDisplay = document.getElementById('cartTotal');
-        const cartCountDisplay = document.getElementById('cartCount');
-        const productModal = document.getElementById('productModal');
-        const closeProductModal = document.getElementById('closeProductModal');
-        const modalProductImage = document.getElementById('modalProductImage');
-        const modalProductName = document.getElementById('modalProductName');
-        const modalProductPrice = document.getElementById('modalProductPrice');
-        const modalProductDescription = document.getElementById('modalProductDescription');
-        const modalNutritionalValues = document.getElementById('modalNutritionalValues');
-        const modalPreparation = document.getElementById('modalPreparation');
-        const modalAddToCartButton = document.getElementById('modalAddToCartButton');
-        const emptyCartMessage = document.getElementById('emptyCartMessage');
+      // Drawer elements (Menu)
+      const drawer = document.getElementById("drawer");
+      const drawerToggle = document.getElementById("drawerToggle");
+      const drawerClose = document.getElementById("drawerClose");
 
-        let cart = [];
+      // Cart drawer elements
+      const cartDrawer = document.getElementById("cartDrawer");
+      const cartButton = document.getElementById("cartButton");
+      const cartDrawerClose = document.getElementById("cartDrawerClose");
+      const cartCount = document.getElementById("cartCount");
+      const cartItemsContainer = document.getElementById("cartItems");
+      const cartTotalElement = document.getElementById("cartTotal");
+      const emptyCartMessage = document.getElementById("emptyCartMessage");
 
-        // Function to toggle drawer visibility
-        const toggleDrawer = () => {
-          drawer.classList.toggle('-translate-x-full');
-          overlay.classList.toggle('hidden');
-        };
+      // Product Details Modal elements
+      const productModal = document.getElementById("productModal");
+      const closeProductModalBtn = document.getElementById("closeProductModal");
+      const modalProductImage = document.getElementById("modalProductImage");
+      const modalProductName = document.getElementById("modalProductName");
+      const modalProductPrice = document.getElementById("modalProductPrice");
+      const modalProductDescription = document.getElementById("modalProductDescription");
+      const modalNutritionalValues = document.getElementById("modalNutritionalValues");
+      const modalPreparation = document.getElementById("modalPreparation");
+      const modalAddToCartButton = document.getElementById("modalAddToCartButton");
+      const productsGrid = document.getElementById("productsGrid"); // Where product cards are rendered
 
-        // Function to toggle cart drawer visibility
-        const toggleCartDrawer = () => {
-          cartDrawer.classList.toggle('translate-x-full');
-          overlay.classList.toggle('hidden');
-        };
+      // Overlay (single for all modals/drawers)
+      const overlay = document.getElementById("overlay");
 
-        // Function to open the product modal
-        const openProductModal = (product) => {
-          modalProductImage.src = product.image;
-          modalProductName.textContent = product.name;
-          modalProductPrice.textContent = `${product.price.toLocaleString('pt-AO', {
-            style: 'currency',
-            currency: 'AOA',
-          })} / ${product.unit}`;
-          modalProductDescription.textContent = product.description;
+      // Array to store products in the cart
+      let cart = [];
 
-          // Clear previous nutritional values and add new ones
-          modalNutritionalValues.innerHTML = '';
-          product.nutritionalValues.forEach((value) => {
+      // Functions for the main drawer (Menu)
+      function openDrawer() {
+        // Close other drawers/modals first
+        closeCartDrawer();
+        closeProductModal();
+
+        drawer.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevent body scroll when drawer is open
+      }
+
+      function closeDrawer() {
+        drawer.classList.add("-translate-x-full");
+        // Only hide overlay if no other drawer/modal is open
+        if (cartDrawer.classList.contains("translate-x-full") && productModal.classList.contains("hidden")) {
+            overlay.classList.add("hidden");
+            document.body.style.overflow = ""; // Restore scroll
+        }
+      }
+
+      // Functions for the cart drawer
+      function openCartDrawer() {
+        // Close other drawers/modals first
+        closeDrawer();
+        closeProductModal();
+
+        cartDrawer.classList.remove("translate-x-full");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevent body scroll
+      }
+
+      function closeCartDrawer() {
+        cartDrawer.classList.add("translate-x-full");
+         // Only hide overlay if no other drawer/modal is open
+        if (drawer.classList.contains("-translate-x-full") && productModal.classList.contains("hidden")) {
+            overlay.classList.add("hidden");
+            document.body.style.overflow = ""; // Restore scroll
+        }
+      }
+
+      // Function to update the cart display in HTML
+      function updateCartDisplay() {
+        cartItemsContainer.innerHTML = ""; // Clear existing items
+        let total = 0;
+
+        if (cart.length === 0) {
+          emptyCartMessage.classList.remove("hidden");
+        } else {
+          emptyCartMessage.classList.add("hidden");
+          cart.forEach((item, index) => {
+            const itemElement = document.createElement("div");
+            itemElement.classList.add(
+              "flex",
+              "items-center",
+              "justify-between",
+              "bg-green-50",
+              "p-3",
+              "rounded-md",
+              "mb-2"
+            );
+            itemElement.innerHTML = `
+                <div class="flex-grow">
+                    <p class="text-green-900 font-semibold">${item.name}</p>
+                    <p class="text-green-700 text-sm">Kz ${item.price.toFixed(2)} x ${item.quantity} ${item.unit || ''}</p>
+                </div>
+                <div class="flex items-center">
+                    <button class="text-green-600 hover:text-green-800 mr-2 decrease-quantity" data-index="${index}">
+                        <i class="fas fa-minus-circle"></i>
+                    </button>
+                    <button class="text-red-500 hover:text-red-700 remove-from-cart" data-index="${index}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+            total += item.price * item.quantity;
+          });
+        }
+
+        cartTotalElement.textContent = `Kz ${total.toFixed(2)}`;
+        cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+        // Add event listeners for remove and decrease quantity buttons AFTER rendering
+        document.querySelectorAll(".remove-from-cart").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const index = event.currentTarget.dataset.index;
+            cart.splice(index, 1); // Remove item from array
+            updateCartDisplay(); // Update display
+          });
+        });
+
+        document.querySelectorAll(".decrease-quantity").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const index = event.currentTarget.dataset.index;
+            if (cart[index].quantity > 1) {
+              cart[index].quantity--;
+            } else {
+              cart.splice(index, 1); // Remove if quantity is 1
+            }
+            updateCartDisplay(); // Update display
+          });
+        });
+      }
+
+      // Add product to cart
+      function addToCart(productName, productPrice, productUnit) {
+        const existingProduct = cart.find((item) => item.name === productName);
+
+        if (existingProduct) {
+          existingProduct.quantity++;
+        } else {
+          cart.push({
+            name: productName,
+            price: productPrice,
+            quantity: 1,
+            unit: productUnit
+          });
+        }
+        updateCartDisplay(); // Update cart display
+        closeProductModal(); // Close product details modal if open
+        openCartDrawer(); // Open cart automatically
+      }
+
+      // Product Details Modal functions
+      function openProductModal(product) {
+        // Close other drawers/modals first
+        closeDrawer();
+        closeCartDrawer();
+
+        modalProductImage.src = product.image;
+        modalProductImage.alt = product.name;
+        modalProductName.textContent = product.name;
+        modalProductPrice.textContent = `Kz ${product.price.toFixed(2)} /${product.unit}`;
+        modalProductDescription.textContent = product.description;
+
+        modalNutritionalValues.innerHTML = ''; // Clear previous list
+        product.nutritionalValues.forEach(value => {
             const li = document.createElement('li');
             li.textContent = value;
             modalNutritionalValues.appendChild(li);
-          });
-
-          modalPreparation.textContent = product.preparation;
-          modalAddToCartButton.onclick = () => addToCart(product); // Attach the addToCart function
-          productModal.classList.remove('hidden');
-          overlay.classList.remove('hidden');
-        };
-
-        // Function to close the modal
-        const closeProductModalFunc = () => {
-          productModal.classList.add('hidden');
-          overlay.classList.add('hidden');
-        };
-
-        // Function to add a product to the cart
-        const addToCart = (product) => {
-          const existingProduct = cart.find((item) => item.id === product.id);
-          if (existingProduct) {
-            existingProduct.quantity += 1;
-          } else {
-            cart.push({ ...product, quantity: 1 });
-          }
-          updateCartDisplay();
-          toggleCartDrawer(); // Open cart drawer after adding
-        };
-
-        // Function to update the cart display
-        const updateCartDisplay = () => {
-          cartItems.innerHTML = ''; // Clear previous cart items
-          let total = 0;
-
-          if (cart.length === 0) {
-            cartItems.appendChild(emptyCartMessage);
-          } else {
-            cart.forEach((item) => {
-              const itemTotal = item.price * item.quantity;
-              total += itemTotal;
-
-              const cartItem = document.createElement('div');
-              cartItem.className = 'flex items-center justify-between border-b border-green-200 py-2';
-              cartItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-md mr-4">
-                <div>
-                  <p class="text-green-900 font-semibold">${item.name}</p>
-                  <p class="text-green-700 text-sm">${item.quantity} x ${item.price.toLocaleString('pt-AO', {
-                    style: 'currency',
-                    currency: 'AOA',
-                  })}</p>
-                </div>
-                <p class="text-green-900 font-bold">${itemTotal.toLocaleString('pt-AO', {
-                  style: 'currency',
-                  currency: 'AOA',
-                })}</p>
-              `;
-              cartItems.appendChild(cartItem);
-            });
-          }
-
-          cartTotalDisplay.textContent = total.toLocaleString('pt-AO', {
-            style: 'currency',
-            currency: 'AOA',
-          });
-          cartCountDisplay.textContent = cart.reduce((acc, item) => acc + item.quantity, 0).toString();
-        };
-
-        // Event listeners
-        drawerToggle.addEventListener('click', toggleDrawer);
-        drawerClose.addEventListener('click', toggleDrawer);
-        cartButton.addEventListener('click', toggleCartDrawer);
-        cartDrawerClose.addEventListener('click', toggleCartDrawer);
-        closeProductModal.addEventListener('click', closeProductModalFunc);
-        overlay.addEventListener('click', () => {
-          toggleDrawer();
-          toggleCartDrawer();
-          closeProductModalFunc();
         });
 
-        // Generate product cards
-        productsData.forEach((product) => {
+        modalPreparation.textContent = product.preparation;
+
+        // Configure the "Add to Cart" button in the modal
+        modalAddToCartButton.onclick = () => addToCart(product.name, product.price, product.unit);
+
+        productModal.classList.remove("hidden");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeProductModal() {
+        productModal.classList.add("hidden");
+        // Only hide overlay if no other drawer/modal is open
+        if (drawer.classList.contains("-translate-x-full") && cartDrawer.classList.contains("translate-x-full")) {
+            overlay.classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+      }
+
+      // Function to render product cards
+      function renderProducts() {
+        productsGrid.innerHTML = ''; // Clear grid before rendering
+        productsData.forEach(product => {
           const productCard = document.createElement('div');
-          productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden';
+          productCard.classList.add('bg-white', 'rounded-lg', 'shadow', 'hover:shadow-lg', 'transition', 'cursor-pointer', 'flex', 'flex-col', 'product-card');
+          productCard.dataset.productId = product.id; // Add product ID for easy access
+
           productCard.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover cursor-pointer" onclick="openProductModal(productsData.find(p => p.id === '${product.id}'))">
-            <div class="p-4">
-              <h3 class="text-green-900 font-bold text-lg select-none">${product.name}</h3>
-              <p class="text-green-700 select-none">${product.price.toLocaleString('pt-AO', {
-                style: 'currency',
-                currency: 'AOA',
-              })} / ${product.unit}</p>
-              <button class="mt-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition w-full" onclick="addToCart(productsData.find(p => p.id === '${product.id}'))">
+            <img alt="${product.name}" class="rounded-t-lg object-cover h-40 w-full" height="200" src="${product.image}" width="300"/>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">${product.name}</h3>
+              <p class="text-green-700 font-bold text-xl mb-4 select-none price">Kz ${product.price.toFixed(2)} /${product.unit}</p>
+              <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-unit="${product.unit}">
                 <i class="fas fa-cart-plus mr-2"></i> Adicionar
               </button>
             </div>
           `;
           productsGrid.appendChild(productCard);
         });
+
+        // Add event listeners for "Add" buttons of new cards
+        document.querySelectorAll(".add-to-cart").forEach((button) => {
+            button.addEventListener("click", (event) => {
+                event.stopPropagation(); // Prevent button click from opening the modal too
+                const productName = event.currentTarget.dataset.name;
+                const productPrice = parseFloat(event.currentTarget.dataset.price);
+                const productUnit = event.currentTarget.dataset.unit;
+                addToCart(productName, productPrice, productUnit);
+            });
+        });
+
+        // Add event listeners to open details modal (by clicking the card, but not the button)
+        document.querySelectorAll(".product-card").forEach((card) => {
+            card.addEventListener("click", (event) => {
+                // Check if the click target or any of its parents is the "Add to Cart" button
+                if (!event.target.closest('.add-to-cart')) {
+                    const productId = event.currentTarget.dataset.productId;
+                    const product = productsData.find(p => p.id === productId);
+                    if (product) {
+                        openProductModal(product);
+                    }
+                }
+            });
+        });
+      }
+
+
+      // Event Listeners for the main drawer
+      drawerToggle.addEventListener("click", openDrawer);
+      drawerClose.addEventListener("click", closeDrawer);
+
+      // Event Listeners for the cart drawer
+      cartButton.addEventListener("click", openCartDrawer);
+      cartDrawerClose.addEventListener("click", closeCartDrawer);
+
+      // Event Listeners for the Product Details Modal
+      closeProductModalBtn.addEventListener("click", closeProductModal);
+
+      // Event Listener to close drawers/modal when clicking the overlay
+      overlay.addEventListener("click", () => {
+        // Determine which element is currently open and close it
+        if (!drawer.classList.contains("-translate-x-full")) {
+          closeDrawer();
+        } else if (!cartDrawer.classList.contains("translate-x-full")) {
+          closeCartDrawer();
+        } else if (!productModal.classList.contains("hidden")) {
+          closeProductModal();
+        }
       });
+
+      // Event Listener to close drawers/modal with ESC key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (!drawer.classList.contains("-translate-x-full")) {
+            closeDrawer();
+          } else if (!cartDrawer.classList.contains("translate-x-full")) {
+            closeCartDrawer();
+          } else if (!productModal.classList.contains("hidden")) {
+            closeProductModal();
+          }
+        }
+      });
+
+      // Initialize product display and cart display on page load
+      renderProducts();
+      updateCartDisplay();
     </script>
   </body>
 </html>
