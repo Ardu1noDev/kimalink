@@ -1,21 +1,20 @@
-require('dotenv').config(); // Carrega as variáveis de ambiente do .env
+require('dotenv').config(); // Garante que as variáveis do .env sejam carregadas
+
 const express = require('express');
 const path = require('path');
-const { getChatGPTReply } = require('./chatgpt'); // Importa a função do chatgpt.js
+// Importa a nova função da API Claude
+const { getClaudeReply } = require('./claudeApi'); // Certifique-se que o nome do arquivo está correto
 
 const app = express();
-const port = process.env.PORT || 3000; // Porta do servidor
+const port = process.env.PORT || 3000;
 
-// Middleware para servir arquivos estáticos (seu index.html)
+// Serve arquivos estáticos (seu frontend)
 app.use(express.static(path.join(__dirname)));
+app.use(express.json()); // Para parsear o corpo das requisições JSON
 
-// Middleware para parsear JSON no corpo das requisições
-app.use(express.json());
-
-// Rota para a comunicação com o ChefBot
+// Rota para o seu chatbot
 app.post('/chat', async (req, res) => {
-    const userMessage = req.body.message;
-
+    const userMessage = req.body.message; // A pergunta do usuário
     if (!userMessage) {
         return res.status(400).json({ error: 'Mensagem vazia.' });
     }
@@ -23,12 +22,14 @@ app.post('/chat', async (req, res) => {
     console.log(`Mensagem do usuário recebida: "${userMessage}"`);
 
     try {
-        const chatGPTReply = await getChatGPTReply(userMessage);
-        console.log(`Resposta do ChefBot: "${chatGPTReply}"`);
-        res.json({ reply: chatGPTReply });
+        // Chama a API da Anthropic Claude para obter a resposta
+        const aiReply = await getClaudeReply(userMessage);
+        console.log(`Resposta do ChefBot (Claude): "${aiReply}"`);
+        res.json({ reply: aiReply }); // Envia a resposta de volta ao frontend
     } catch (error) {
-        console.error('Erro ao obter resposta do ChatGPT:', error);
-        res.status(500).json({ error: 'Erro ao processar a mensagem do ChefBot.' });
+        console.error('Erro ao processar a mensagem no servidor:', error);
+        // Envia um erro HTTP 500 para o cliente, com a mensagem amigável
+        res.status(500).json({ error: error.message || 'Erro interno do servidor.' });
     }
 });
 
