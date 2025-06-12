@@ -1,0 +1,52 @@
+/* Adicione estilos personalizados aqui, se necessário */
+
+/* Scrollbar estilizada */
+#chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-messages::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+#chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Animação para o indicador de digitação */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.animate-pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Mensagem do usuário */
+.user-message-bubble {
+    background-color: #d1fae5; /* Um verde claro */
+    color: #10b981; /* Texto verde mais escuro */
+    align-self: flex-end; /* Alinha à direita */
+    margin-left: auto; /* Garante que fique à direita */
+    max-width: 80%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+/* Mensagem do bot */
+.bot-message-bubble {
+    background-color: #e5e7eb; /* Cinza claro */
+    color: #374151; /* Texto cinza escuro */
+    align-self: flex-start; /* Alinha à esquerda */
+    margin-right: auto; /* Garante que fique à esquerda */
+    max-width: 80%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+}
