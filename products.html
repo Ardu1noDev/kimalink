@@ -80,24 +80,6 @@
           <i class="fas fa-box-open mr-2"></i> Produtos
         </a>
         <a
-  id="chefbotMenuItem"
-  class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
-  href="chatbot/index.html" >
-  <i class="fas fa-robot mr-2"></i> ChefBot
-</a>
-        <a
-          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
-          href="#"
-        >
-          <i class="fas fa-shopping-cart mr-2"></i> Pedidos
-        </a>
-        <a
-          class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
-          href="#"
-        >
-          <i class="fas fa-users mr-2"></i> Clientes
-        </a>
-        <a
           class="flex items-center text-green-700 hover:bg-green-100 rounded-md px-3 py-2 font-medium transition select-none"
           href="perfilscreen.html"
         >
@@ -107,53 +89,52 @@
     </aside>
 
     <aside
-      class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50"
-      id="cartDrawer"
+  class="fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform translate-x-full transition-transform duration-300 z-50"
+  id="cartDrawer"
+>
+  <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
+    <h2 class="text-green-900 font-bold text-lg select-none">Seu Carrinho</h2>
+    <button
+      aria-label="Fechar carrinho"
+      class="text-green-700 hover:text-green-900 focus:outline-none"
+      id="cartDrawerClose"
     >
-      <div class="flex items-center justify-between px-6 py-4 border-b border-green-200">
-        <h2 class="text-green-900 font-bold text-lg select-none">Seu Carrinho</h2>
-        <button
-          aria-label="Fechar carrinho"
-          class="text-green-700 hover:text-green-900 focus:outline-none"
-          id="cartDrawerClose"
-        >
-          <i class="fas fa-times fa-lg"></i>
-        </button>
-      </div>
-      <div class="p-4 flex flex-col h-[calc(100%-70px)]">
-        <div id="cartItems" class="flex-grow overflow-y-auto custom-scrollbar">
-          <p class="text-green-600 text-sm italic" id="emptyCartMessage">
-            Seu carrinho está vazio.
-          </p>
-        </div>
-        <div class="border-t border-green-200 pt-4 mt-4">
-          <p class="text-green-900 font-bold text-lg flex justify-between">
-            Total: <span id="cartTotal">Kz 0,00</span>
-          </p>
-          <button
-            id="checkoutButton"
-            class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition"
-          >
-            Finalizar Compra
-          </button>
+      <i class="fas fa-times fa-lg"></i>
+    </button>
+  </div>
+  <div class="p-4 flex flex-col h-[calc(100%-70px)]">
+    <div id="cartItems" class="flex-grow overflow-y-auto custom-scrollbar">
+      <p class="text-green-600 text-sm italic" id="emptyCartMessage">
+        Seu carrinho está vazio.
+      </p>
+    </div>
+    <div class="border-t border-green-200 pt-4 mt-4">
+      <p class="text-green-900 font-bold text-lg flex justify-between">
+        Total: <span id="cartTotal">Kz 0,00</span>
+      </p>
+      <button
+        id="checkoutButton" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition"
+      >
+        Finalizar Compra
+      </button>
 
-          <div id="paymentOptions" class="mt-4 border-t border-green-200 pt-4 hidden">
-            <p class="text-green-900 font-semibold mb-2">Pagar com:</p>
-            <div class="flex flex-col space-y-2">
-              <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition">
-                <i class="fab fa-stripe mr-2"></i> Stripe
-              </button>
-              <button class="w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 rounded-md transition">
-                <i class="fab fa-paypal mr-2"></i> PayPal
-              </button>
-              <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md transition">
-                <i class="fas fa-money-check-alt mr-2"></i> Multicaixa Express
-              </button>
-            </div>
-          </div>
+      <div id="paymentOptions" class="mt-4 border-t border-green-200 pt-4 hidden">
+        <p class="text-green-900 font-semibold mb-2">Pagar com:</p>
+        <div class="flex flex-col space-y-2">
+          <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition">
+            <i class="fab fa-stripe mr-2"></i> Stripe
+          </button>
+          <button class="w-full bg-blue-800 hover:bg-blue-900 text-white font-semibold py-2 rounded-md transition">
+            <i class="fab fa-paypal mr-2"></i> PayPal
+          </button>
+          <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md transition">
+            <i class="fas fa-money-check-alt mr-2"></i> Multicaixa Express
+          </button>
         </div>
       </div>
-    </aside>
+    </div>
+  </div>
+</aside>
 
     <div
       class="fixed inset-0 bg-black bg-opacity-40 hidden z-40"
@@ -161,7 +142,7 @@
     ></div>
 
     <main class="flex-grow p-6 container mx-auto">
-      <h1 class="text-green-900 text-3xl font-bold text-center mb-6">Produtos frescos todos os dias</h1>
+    <h1 class="text-green-900 text-3xl font-bold text-center mb-6">Produtos frescos todos os dias</h1>
 
       <section class="mb-8">
         <h2 class="text-green-800 text-2xl font-bold mb-4">Legumes</h2>
@@ -233,38 +214,6 @@
             </button>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      id="chatWindow"
-      class="fixed bottom-0 right-0 w-full sm:w-96 h-full sm:h-[calc(100%-64px)] bg-white border-l border-t border-green-200 shadow-xl flex flex-col z-50 transform translate-x-full transition-transform duration-300"
-    >
-      <div class="bg-green-700 text-white p-4 rounded-tl-lg flex items-center justify-between shadow-md">
-        <h3 class="font-bold text-lg">ChefBot - Seu Assistente Culinário</h3>
-        <button
-          id="chatCloseButton"
-          class="text-white hover:text-gray-200 focus:outline-none"
-          aria-label="Fechar Chat"
-        >
-          <i class="fas fa-times fa-lg"></i>
-        </button>
-      </div>
-      <div id="chatContainer" class="flex-grow p-4 overflow-y-auto custom-scrollbar bg-gray-50"></div>
-      <div class="border-t border-gray-200 p-4 flex items-center bg-white shadow-inner">
-        <input
-          type="text"
-          id="chatInput"
-          placeholder="Pergunte sobre receitas, ingredientes..."
-          class="flex-grow border border-gray-300 rounded-md p-2 mr-2 focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-800"
-          aria-label="Campo de mensagem do chat"
-        />
-        <button
-          id="chatSendButton"
-          class="bg-green-600 hover:bg-green-700 text-white p-3 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500"
-          aria-label="Enviar Mensagem"
-        >
-          <i class="fas fa-paper-plane"></i>
-        </button>
       </div>
     </div>
 
@@ -430,11 +379,11 @@
         },
         {
           id: 'patinha',
-          name: 'Patinha de Porco',
+          name: 'Patinha',
           price: 900,
           unit: 'kg',
           image: './assets/carne/patinha.jpg',
-          description: 'Patinha de porco fresca, ótima para caldos e ensopados robustos.',
+          description: 'Patinha fresca, ótima para caldos e ensopados robustos.',
           category: 'carnes',
           nutritionalValues: ['Colágeno', 'Proteínas', 'Minerais'],
           preparation: 'Cozinhar lentamente em ensopados ou feijoadas.',
@@ -577,34 +526,32 @@
       const drawer = document.getElementById("drawer");
       const drawerToggle = document.getElementById("drawerToggle");
       const drawerClose = document.getElementById("drawerClose");
-      const chefbotMenuItem = document.getElementById("chefbotMenuItem");
-      const chatWindow = document.getElementById("chatWindow");
 
       // ... (código existente) ...
 
-      // Cart drawer elements
-      const cartDrawer = document.getElementById("cartDrawer");
-      const cartButton = document.getElementById("cartButton");
-      const cartDrawerClose = document.getElementById("cartDrawerClose");
-      const cartCount = document.getElementById("cartCount");
-      const cartItemsContainer = document.getElementById("cartItems");
-      const cartTotalElement = document.getElementById("cartTotal");
-      const emptyCartMessage = document.getElementById("emptyCartMessage");
+// Cart drawer elements
+const cartDrawer = document.getElementById("cartDrawer");
+const cartButton = document.getElementById("cartButton");
+const cartDrawerClose = document.getElementById("cartDrawerClose");
+const cartCount = document.getElementById("cartCount");
+const cartItemsContainer = document.getElementById("cartItems");
+const cartTotalElement = document.getElementById("cartTotal");
+const emptyCartMessage = document.getElementById("emptyCartMessage");
 
-      // Adicionado: Botão de Finalizar Compra e Opções de Pagamento
-      const checkoutButton = document.getElementById("checkoutButton");
-      const paymentOptions = document.getElementById("paymentOptions");
+// Adicionado: Botão de Finalizar Compra e Opções de Pagamento
+const checkoutButton = document.getElementById("checkoutButton");
+const paymentOptions = document.getElementById("paymentOptions");
 
-      // ... (restante do seu código JavaScript) ...
+// ... (restante do seu código JavaScript) ...
 
-      // Adicionado: Event Listener para o botão de finalizar compra
-      checkoutButton.addEventListener('click', () => {
-          // Exibe as opções de pagamento
-          paymentOptions.classList.remove('hidden');
-          // Você pode adicionar outras ações aqui, como validar o carrinho, etc.
-      });
+// Adicionado: Event Listener para o botão de finalizar compra
+checkoutButton.addEventListener('click', () => {
+    // Exibe as opções de pagamento
+    paymentOptions.classList.remove('hidden');
+    // Você pode adicionar outras ações aqui, como validar o carrinho, etc.
+});
 
-      // ... (restante do seu código JavaScript, incluindo o DOMContentLoaded) ...
+// ... (restante do seu código JavaScript, incluindo o DOMContentLoaded) ...
 
       // Product Details Modal elements
       const productModal = document.getElementById("productModal");
@@ -734,23 +681,24 @@
       }
 
       // Add product to cart
-      function addToCart(productName, productPrice, productUnit) {
-        const existingProduct = cart.find((item) => item.name === productName);
+     // Add product to cart
+function addToCart(productName, productPrice, productUnit) {
+  const existingProduct = cart.find((item) => item.name === productName);
 
-        if (existingProduct) {
-          existingProduct.quantity++;
-        } else {
-          cart.push({
-            name: productName,
-            price: productPrice,
-            quantity: 1,
-            unit: productUnit
-          });
-        }
-        updateCartDisplay(); // Update cart display
-        closeProductModal(); // Close product details modal if open
-        // openCartDrawer(); // Esta linha foi removida para evitar a abertura automática
-      }
+  if (existingProduct) {
+    existingProduct.quantity++;
+  } else {
+    cart.push({
+      name: productName,
+      price: productPrice,
+      quantity: 1,
+      unit: productUnit
+    });
+  }
+  updateCartDisplay(); // Update cart display
+  closeProductModal(); // Close product details modal if open
+  // openCartDrawer(); // Esta linha foi removida para evitar a abertura automática
+}
       // Product Details Modal functions
       function openProductModal(product) {
         // Close other drawers/modals first
@@ -792,132 +740,90 @@
       // Function to create a product card element
       function createProductCard(product) {
           const productCard = document.createElement('div');
-          productCard.classList.add('bg-white', 'rounded-lg', 'shadow-md', 'overflow-hidden', 'hover:shadow-xl', 'transition-all', 'duration-300', 'cursor-pointer', 'flex', 'flex-col');
+          productCard.classList.add('bg-white', 'rounded-lg', 'shadow', 'hover:shadow-lg', 'transition', 'cursor-pointer', 'flex', 'flex-col', 'product-card');
+          productCard.dataset.productId = product.id; // Add product ID for easy access
 
           productCard.innerHTML = `
-              <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
-              <div class="p-4 flex-grow flex flex-col">
-                  <h3 class="text-lg font-semibold text-green-900 mb-1">${product.name}</h3>
-                  <p class="text-green-700 font-bold mb-3">Kz ${product.price.toFixed(2)} /${product.unit}</p>
-                  <button class="mt-auto bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md text-sm transition add-to-cart-btn" data-product-id="${product.id}">
-                      Adicionar
-                  </button>
-              </div>
+            <img alt="${product.name}" class="rounded-t-lg object-cover h-40 w-full" height="100" src="${product.image}" width="300"/>
+            <div class="p-4 flex flex-col flex-grow">
+              <h3 class="text-green-900 font-semibold text-lg mb-2 select-none">${product.name}</h3>
+              <p class="text-green-700 font-bold text-xl mb-4 select-none price">Kz ${product.price.toFixed(2)} /${product.unit}</p>
+              <button class="mt-auto bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition add-to-cart" data-id="${product.id}" data-name="${product.name}" data-price="${product.price}" data-unit="${product.unit}"> <i class="fas fa-cart-plus mr-2"></i> Adicionar ao Carrinho </button>
+            </div>
           `;
-
-          // Add click listener to open modal with product details
-          productCard.querySelector('img').addEventListener('click', () => openProductModal(product));
-          productCard.querySelector('h3').addEventListener('click', () => openProductModal(product));
-          productCard.querySelector('p.font-bold').addEventListener('click', () => openProductModal(product));
-
-
-          // Add to Cart button logic (inside the card)
-          productCard.querySelector('.add-to-cart-btn').addEventListener('click', (event) => {
-              event.stopPropagation(); // Prevent modal from opening when clicking add button
-              addToCart(product.name, product.price, product.unit);
-          });
-
           return productCard;
       }
 
-      // Function to render products into their respective grids
+      // Function to render product cards into their respective categories
       function renderProducts() {
-          // Clear existing products
-          legumesGrid.innerHTML = '';
-          carnesGrid.innerHTML = '';
-          frutasGrid.innerHTML = '';
-          vegetaisGrid.innerHTML = '';
+        // Clear all grids first
+        legumesGrid.innerHTML = '';
+        carnesGrid.innerHTML = '';
+        frutasGrid.innerHTML = '';
+        vegetaisGrid.innerHTML = '';
 
-          productsData.forEach(product => {
-              const productCard = createProductCard(product);
-              switch (product.category) {
-                  case 'legumes':
-                      legumesGrid.appendChild(productCard);
-                      break;
-                  case 'carnes':
-                      carnesGrid.appendChild(productCard);
-                      break;
-                  case 'frutas':
-                      frutasGrid.appendChild(productCard);
-                      break;
-                  case 'vegetais':
-                      vegetaisGrid.appendChild(productCard);
-                      break;
-                  default:
-                      // Handle uncategorized or add to a general grid
-                      break;
-              }
+        productsData.forEach(product => {
+          const productCard = createProductCard(product);
+
+          // Append to the correct grid based on category
+          if (product.category === 'legumes') {
+            legumesGrid.appendChild(productCard);
+          } else if (product.category === 'carnes') {
+            carnesGrid.appendChild(productCard);
+          } else if (product.category === 'frutas') {
+            frutasGrid.appendChild(productCard);
+          } else if (product.category === 'vegetais') { // For other items in 'vegetais' folder not classified as 'legumes'
+            vegetaisGrid.appendChild(productCard);
+          }
+          // Add more categories as needed
+        });
+
+        // Add click listeners to product cards to open modal (event delegation for efficiency)
+        document.querySelectorAll('.product-card').forEach(card => {
+          card.addEventListener('click', (event) => {
+            // Check if the click was on the "Add to Cart" button, if so, let that handler deal with it
+            if (event.target.closest('.add-to-cart')) {
+                return;
+            }
+            const productId = card.dataset.productId;
+            const product = productsData.find(p => p.id === productId);
+            if (product) {
+              openProductModal(product);
+            }
           });
+        });
+
+        // Add click listeners for "Add to Cart" buttons directly on the cards (event delegation for efficiency)
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the card click listener from firing
+                const productId = event.currentTarget.dataset.id;
+                const productName = event.currentTarget.dataset.name;
+                const productPrice = parseFloat(event.currentTarget.dataset.price);
+                const productUnit = event.currentTarget.dataset.unit;
+                addToCart(productName, productPrice, productUnit);
+            });
+        });
       }
 
-      // Initialize on DOM load
+
+      // Event Listeners for drawers and modal
+      drawerToggle.addEventListener("click", openDrawer);
+      drawerClose.addEventListener("click", closeDrawer);
+      cartButton.addEventListener("click", openCartDrawer);
+      cartDrawerClose.addEventListener("click", closeCartDrawer);
+      overlay.addEventListener("click", () => {
+        closeDrawer();
+        closeCartDrawer();
+        closeProductModal();
+      });
+      closeProductModalBtn.addEventListener("click", closeProductModal);
+
+
+      // Initial render of products when the page loads
       document.addEventListener("DOMContentLoaded", () => {
-        renderProducts(); // Render products when DOM is ready
-        updateCartDisplay(); // Load cart state
-
-        // Event Listeners for main drawer
-        drawerToggle.addEventListener("click", openDrawer);
-        drawerClose.addEventListener("click", closeDrawer);
-
-        // Event Listeners for cart drawer
-        cartButton.addEventListener("click", openCartDrawer);
-        cartDrawerClose.addEventListener("click", closeCartDrawer);
-
-        // Event Listener for product modal
-        closeProductModalBtn.addEventListener("click", closeProductModal);
-
-        // Close drawers/modals when clicking outside (on overlay)
-        overlay.addEventListener("click", () => {
-          closeDrawer();
-          closeCartDrawer();
-          closeProductModal();
-        });
-
-        // Chatbot related functionality (if needed, otherwise remove this block if chatWindow is removed)
-        const chatCloseButton = document.getElementById("chatCloseButton");
-        // No direct event listener for chefbotMenuItem click to open chatWindow now,
-        // as it will navigate to ChefBot.html directly.
-        // If ChefBot.html also contains a chat window, its logic would be handled there.
-        chatCloseButton.addEventListener("click", () => {
-            chatWindow.classList.add("translate-x-full");
-        });
-
-        // Basic chat functionality for demonstration purposes (you'll replace this with actual chatbot logic)
-        const chatInput = document.getElementById("chatInput");
-        const chatSendButton = document.getElementById("chatSendButton");
-        const chatContainer = document.getElementById("chatContainer");
-
-        chatSendButton.addEventListener("click", () => {
-            const message = chatInput.value.trim();
-            if (message) {
-                appendMessage("user", message);
-                chatInput.value = "";
-                // Simulate a bot response
-                setTimeout(() => {
-                    appendMessage("bot", "Olá! Como posso ajudar com receitas ou ingredientes hoje?");
-                }, 500);
-            }
-        });
-
-        chatInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                chatSendButton.click();
-            }
-        });
-
-        function appendMessage(sender, text) {
-            const messageElement = document.createElement("div");
-            messageElement.classList.add(
-                "mb-2",
-                "p-3",
-                "rounded-lg",
-                "max-w-[80%]",
-                sender === "user" ? "bg-green-100 ml-auto" : "bg-gray-200 mr-auto"
-            );
-            messageElement.textContent = text;
-            chatContainer.appendChild(messageElement);
-            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to bottom
-        }
+        renderProducts();
+        updateCartDisplay(); // Initialize cart display (e.g., if reloaded with items)
       });
     </script>
   </body>
